@@ -12,11 +12,11 @@ class evolucion extends Model
     use HasFactory;
    protected $table = 'evolucion';
     protected $fillable = [
-        
+
         'diagnostico',
         'conducta',
         'id_sucursal',//
-        'id_especialidad', 
+        'id_especialidad',
         'id_users',
     ];
     public function sucursales()
@@ -29,6 +29,6 @@ class evolucion extends Model
     }
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_users');
     }
 }

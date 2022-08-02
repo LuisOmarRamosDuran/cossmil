@@ -33,7 +33,7 @@ class User extends Authenticatable
         'grado',
         'fuerza',
         'id_genero',
-        
+
     ];
 
     /**
@@ -53,8 +53,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function evolucion()
+    public function evoluciones()
     {
-        $this->hasOne(evolucion::class);
+        return $this->hasMany(evolucion::class, 'id_users');
     }
 }

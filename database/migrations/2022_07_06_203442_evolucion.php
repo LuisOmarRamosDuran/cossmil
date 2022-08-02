@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('diagnostico');
             $table->string('conducta');
             $table->unsignedBigInteger('id_sucursal');
-            $table->foreign('id_sucursal')->references('id')->on('sucursal')->onDelete('cascade');
             $table->unsignedBigInteger('id_especialidad');
-            $table->foreign('id_especialidad')->references('id')->on('especialidad')->onDelete('cascade');
             $table->unsignedBigInteger('id_users');
+            $table->foreign('id_sucursal')->references('id')->on('sucursal')->onDelete('cascade');
+            $table->foreign('id_especialidad')->references('id')->on('especialidad')->onDelete('cascade');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

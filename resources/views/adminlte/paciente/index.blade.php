@@ -36,20 +36,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $data_view)
-                <tr>
-                    <td>{{ $data_view->diagnostico }}</td>
-                    @if($data_view->user->tipo_user == 2)
-                        <td>{{ $data_view->user->nombre }}</td>
-                    @endif
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011-04-25</td>
-                    <td>
-                        <button type="button" class="btn btn-success">Ver</button>
-                    </td>
-                </tr>    
-            @endforeach
+{{--            @foreach ($data as $data_view)--}}
+{{--                <tr>--}}
+{{--                    <td>{{ $data_view->diagnostico }}</td>--}}
+{{--                    @if($data_view->user->tipo_user == 2)--}}
+{{--                        <td>{{ $data_view->user->nombre }}</td>--}}
+{{--                    @endif--}}
+{{--                    <td>Edinburgh</td>--}}
+{{--                    <td>61</td>--}}
+{{--                    <td>2011-04-25</td>--}}
+{{--                    <td>--}}
+{{--                        <button type="button" class="btn btn-success">Ver</button>--}}
+{{--                    </td>--}}
+{{--                </tr>    --}}
+{{--            @endforeach--}}
         </tbody>
         <tfoot>
             <tr>

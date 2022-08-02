@@ -167,7 +167,7 @@ return [
     |
     */
 
-    'right_sidebar' => true,
+    'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
@@ -237,9 +237,9 @@ return [
         ],
 
         // Sidebar items:
-        
-       
-        
+
+
+
         ['header' => 'AJUSTES DE CUENTA'],
         [
             'text' => 'profile',
@@ -251,7 +251,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-       
+
         ['header' => 'SERVICIOS'],
         [
             'text'       => 'HISTORIA CLINICA',
@@ -272,7 +272,7 @@ return [
             'icon_color' => 'red',
             'text' => 'CERRAR SESIÓN',
             'url'  => 'logout',
-            
+
         ],
     ],
 
@@ -320,7 +320,7 @@ return [
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
 
-                
+
                 [
                     'type' => 'js',
                     'asset' => false,
@@ -356,7 +356,7 @@ return [
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
-                
+
             ],
         ],
         'Sweetalert2' => [
@@ -382,7 +382,7 @@ return [
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
                 ],
-                
+
             ],
         ],
     ],
