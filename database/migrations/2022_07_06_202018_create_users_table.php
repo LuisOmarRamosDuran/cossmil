@@ -21,13 +21,14 @@ return new class extends Migration
             $table->string('ap_materno');
             $table->string('ap_esposo');
             $table->string('matricula');
-            $table->string('contraseña');
+            $table->string('password');
             $table->date('fecha_nacimiento');
             $table->string('ci');
             $table->string('tipo_sangre');
-            $table->string('grado');
+            $table->string('grado')->nullable();
             $table->string('fuerza');
-            
+            $table->unsignedBigInteger('id_genero');
+            $table->foreign('id_genero')->references('id')->on('genero')->onDelete('cascade');
             $table->rememberToken();
             $table->foreign('id_rol')->references('id')->on('rol')->onDelete('cascade');
             $table->timestamps();

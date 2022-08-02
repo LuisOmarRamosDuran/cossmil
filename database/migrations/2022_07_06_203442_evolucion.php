@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('evolucion', function (Blueprint $table) {
             $table->id();
-            $table->string('c_asegurado');
-            $table->string('c_beneficiario');
             $table->string('diagnostico');
             $table->string('conducta');
             $table->unsignedBigInteger('id_sucursal');

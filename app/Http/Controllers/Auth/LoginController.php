@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -41,5 +42,23 @@ class LoginController extends Controller
     public function login_web(Request $request)
     {
         dd($request->all());
+    }
+
+    public function email()
+    {
+        return 'matricula';
+    }
+
+    public function loginUser(Request $request)
+    {
+        $credenciales = request()->only('matricula', 'password');
+        
+        if(Auth::attempt($credenciales))
+        {
+            return redirect()->route('home');
+        }
+        return 'Login fallido';
+
+
     }
 }

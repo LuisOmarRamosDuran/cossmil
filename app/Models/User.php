@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\evolucion;
 
 class User extends Authenticatable
 {
@@ -25,12 +26,13 @@ class User extends Authenticatable
         'ap_materno',
         'ap_esposo',
         'matricula',
-        'contraseña',
+        'password',
         'fecha_nacimiento',
         'ci',
         'tipo_sangre',
         'grado',
         'fuerza',
+        'id_genero',
         
     ];
 
@@ -40,7 +42,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'contraseña',
+        'password',
     ];
 
     /**
@@ -51,4 +53,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function evolucion()
+    {
+        $this->hasOne(evolucion::class);
+    }
 }

@@ -67,20 +67,6 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="carnet_asegurado" class="col-md-4 col-form-label text-md-end">{{ __('Carnet_asegurado') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="carnet_asegurado" type="text" class="form-control @error('carnet_asegurado') is-invalid @enderror" name="carnet_asegurado" required autocomplete="new-carnet_asegurado">
-
-                                @error('carnet_asegurado')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
 
                         <div class="row mb-3">
                             <label for="carnet_beneficiario" class="col-md-4 col-form-label text-md-end">{{ __('Carnet beneficiario') }}</label>
@@ -128,7 +114,7 @@
                             <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-end">{{ __('Fecha de nacimiento') }}</label>
 
                             <div class="col-md-6">
-                                <input id="fecha_nacimiento" type="date" class="form-control @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento" required autocomplete="new-fecha_nacimiento">
+                                <input id="fecha_nacimiento" type="date" class="form-control @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento" required autocomplete="new-fecha_nacimiento" min="1900-01-01" max="2200-12-30">
 
                                 @error('fecha_nacimiento')
                                 <span class="invalid-feedback" role="alert">
@@ -138,16 +124,34 @@
                             </div>
                         </div>
 
+                        
+
                         <div class="row mb-3">
                             <label for="tipo_user" class="col-md-4 col-form-label text-md-end">{{ __('Tipo de usuario') }}</label>
                             <div class="col-md-6">
                                 <select id="tipo_user" class="custom-select" name="tipo_user">
-                                    <option value="1">Médico</option>
-                                    <option value="2">Paciente</option>
+                                    <option value="1">Paciente</option>
+                                    <option value="2">Medico</option>
                                     <option value="3">Administrador</option>
                                 </select>
 
                                 @error('tipo_user')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                         <div class="row mb-3">
+                            <label for="tipo_genero" class="col-md-4 col-form-label text-md-end">{{ __('Genero') }}</label>
+                            <div class="col-md-6">
+                                <select id="tipo_genero" class="custom-select" name="tipo_genero">
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Femenino</option>
+                                </select>
+
+                                @error('tipo_genero')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

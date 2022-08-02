@@ -15,7 +15,14 @@
                             <label for="matricula" class="col-md-4 col-form-label text-md-end">{{ __('matricula') }}</label>
 
                             <div class="col-md-6">
-                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ old('matricula') }}" required autocomplete="matricula" autofocus>
+                                <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula" value="{{ old('matricula') }}" required autocomplete="matricula" autofocus
+                                    onkeyup="
+                                    var start = this.selectionStart;
+                                    var end = this.selectionEnd;
+                                    this.value = this.value.toUpperCase();
+                                    this.setSelectionRange(start, end);
+                                    "
+                                >
 
                                 @error('matricula')
                                     <span class="invalid-feedback" role="alert">
@@ -26,12 +33,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="contraseña" class="col-md-4 col-form-label text-md-end">{{ __('contraseña') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="contraseña" type="contraseña" class="form-control @error('contraseña') is-invalid @enderror" name="contraseña" required autocomplete="current-contraseña">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                @error('contraseña')
+                                @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
