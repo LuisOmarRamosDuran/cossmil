@@ -15,20 +15,20 @@ class evolucion extends Model
 
         'diagnostico',
         'conducta',
-        'id_sucursal',//
+        //
         'id_especialidad',
         'id_users',
     ];
     public function sucursales()
     {
-        $this->belongsToMany(sucursal::class, 'evolucion_sucursal', 'id_evolucion');
+        return $this->belongsToMany(sucursal::class, 'evolucion_sucursal', 'evolucion_id');
     }
     public function especialidades()
     {
-        $this->belongsToMany(sucursal::class, 'evolucion_especialidad', 'id_evolucion');
+        return $this->belongsToMany(especialidad::class, 'evolucion_especialidad', 'evolucion_id');
     }
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'id_users');
+        return $this->belongsToMany(User::class, 'evolucion_user', 'evolucion_id');
     }
 }

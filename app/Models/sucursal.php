@@ -17,6 +17,6 @@ class sucursal extends Model
 
     public function evoluciones()
     {
-        $this->belongsToMany(evolucion::class, 'evolucio_sucursal', 'id_sucursal');
+        return $this->belongsToMany(evolucion::class, 'evolucion_sucursal', 'sucursal_id');
     }
 }

@@ -52,10 +52,17 @@ class LoginController extends Controller
     public function loginUser(Request $request)
     {
         $credenciales = request()->only('matricula', 'password');
-        
+
         if(Auth::attempt($credenciales))
         {
-            return redirect()->route('home');
+            if (\auth()->user()->id_rol == 1)
+            {
+                return redirect()->route('paciente');
+            }
+            else if (\auth()->user()->id_rol == 2)
+            {
+                return redirect()->route('buscar_paciente');
+            }
         }
         return 'Login fallido';
 

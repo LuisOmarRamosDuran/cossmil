@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'paciente')
+@section('title', 'Paciente')
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -9,21 +9,10 @@
 @stop
 
 @section('content_header')
-    <h1>Paciente es te es el middleware</h1>
+    <h1 class="text-center text-uppercase">Historial Cl&iacute;nico digital</h1>
 @stop
 
 @section('content')
-
-        {{-- @if(auth()->user()->id_rol == 2)
-            <p>Welcome {{ auth()->user()->nombre }}</p>
-        @endif--}}
-        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">cerrar
-                                    {{ __('Logout') }}
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
     <table id="historia_clinica" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -36,29 +25,40 @@
             </tr>
         </thead>
         <tbody>
-{{--            @foreach ($data as $data_view)--}}
-{{--                <tr>--}}
-{{--                    <td>{{ $data_view->diagnostico }}</td>--}}
-{{--                    @if($data_view->user->tipo_user == 2)--}}
-{{--                        <td>{{ $data_view->user->nombre }}</td>--}}
+            @foreach ($user_evoluciones as $data)
+                <tr>
+                    <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y')}}</td>
+                    @foreach($data->sucursales as $sucursal)
+                        <td>{{ $sucursal->iniciales }}</td>
+                    @endforeach
+{{--                    @if($data->user->tipo_user == 2)--}}
+{{--                        <td>{{ $data->user->nombre }}</td>--}}
 {{--                    @endif--}}
-{{--                    <td>Edinburgh</td>--}}
-{{--                    <td>61</td>--}}
-{{--                    <td>2011-04-25</td>--}}
-{{--                    <td>--}}
-{{--                        <button type="button" class="btn btn-success">Ver</button>--}}
-{{--                    </td>--}}
-{{--                </tr>    --}}
-{{--            @endforeach--}}
+                    @foreach($data->especialidades as $especialidad)
+                        <td>{{ $especialidad->nombre }}</td>
+                    @endforeach
+                    @foreach($data->users as $medico)
+                        @if($medico->id_rol == 2)
+                            <td>{{ $medico->nombre }}</td>
+                        @endif
+                    @endforeach
+                    <td>{{ $data->diagnostico }}</td>
+                    <td>
+                        <a href="{{ route('index.historia', ['evolucion' => $data]) }}" class="href">
+                            <button type="button" class="btn btn-success">Ver</button>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
         <tfoot>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Fecha</th>
+                <th>Sucursal</th>
+                <th>Especialidad</th>
+                <th>M&eacute;dico</th>
+                <th>Diagn&oacute;stico</th>
+                <th>Acci&oacute;n</th>
             </tr>
         </tfoot>
     </table>

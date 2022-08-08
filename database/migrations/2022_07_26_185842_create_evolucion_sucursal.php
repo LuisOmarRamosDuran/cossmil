@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('evolucion_sucursal', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_evolucion');
-            $table->foreign('id_evolucion')->references('id')->on('evolucion')->onDelete('cascade');
-            $table->unsignedBigInteger('id_sucursal');
-            $table->foreign('id_sucursal')->references('id')->on('sucursal')->onDelete('cascade');
+            $table->unsignedBigInteger('evolucion_id');
+            $table->foreign('evolucion_id')->references('id')->on('evolucion')->onDelete('cascade');
+            $table->unsignedBigInteger('sucursal_id');
+            $table->foreign('sucursal_id')->references('id')->on('sucursal')->onDelete('cascade');
             $table->timestamps();
         });
     }

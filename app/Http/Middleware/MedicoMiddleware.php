@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PacienteMiddleware
+class MedicoMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,6 @@ class PacienteMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
         if (Auth::check())
         {
             $user = Auth::user();
@@ -35,5 +34,4 @@ class PacienteMiddleware
             return redirect()->route('login');
         }
     }
-
 }

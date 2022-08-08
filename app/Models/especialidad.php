@@ -13,9 +13,9 @@ class especialidad extends Model
         'id',
         'nombre',
     ];
-    public function especialidades()
+    public function evoluciones()
     {
-        $this->belongsToMany(evolucion::class, 'evolucion_especialidad', 'id_especialidad');
+        return $this->belongsToMany(evolucion::class, 'evolucion_especialidad', 'especialidad_id');
     }
 }
 
