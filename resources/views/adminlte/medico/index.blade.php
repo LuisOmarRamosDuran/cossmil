@@ -7,6 +7,18 @@
 @stop
 
 @section('content')
+    @if(session()->has('NotifYes'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Notificacion</strong> {{ session()->get('NotifYes') }}
+        </div>
+    @endif
+    @if(session()->has('NotifNo'))
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Notificacion</strong> {{ session()->get('NotifNo') }}
+        </div>
+    @endif
     <div class="container">
         <div class="row justify-content-center align-items-center vh-50">
             <div class="col-md-4">

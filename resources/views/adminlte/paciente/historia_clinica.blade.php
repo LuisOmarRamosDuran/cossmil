@@ -31,7 +31,7 @@
                 <span class="font-weight-bold text-uppercase d-flex justify-content-center">Evolución y tratamiento</span>
             </div>
             <div class="col-md-4">
-                <span>codigo</span>
+                <span class="font-weight-bold">{{ $code }}</span>
             </div>
         </div>
         <div class="container font-weight-bold">
@@ -149,10 +149,10 @@
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{{ asset("/js/jquery.printPage.js") }}" ></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.btnprn').printPage();
-        });
-    </script>
+{{--    <script src="{{ asset("/js/jquery.printPage.js") }}" ></script>--}}
+{{--    <script type="text/javascript">--}}
+{{--        $(document).ready(function(){--}}
+{{--            $('.btnprn').printPage();--}}
+{{--        });--}}
+{{--    </script>--}}
 @stop
