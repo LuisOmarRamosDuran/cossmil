@@ -31,10 +31,14 @@ Route::group(['middleware' => 'paciente'], function () {
     Route::get('/paciente', [PacienteController::class, 'index'])->name('paciente');
     Route::get('/historia_clinica/{evolucion}', [App\Http\Controllers\PacienteController::class, 'historia'])->name('index.historia');//
     Route::get('/prnpriview/{evolucion}', [App\Http\Controllers\PrintController::class, 'prnpriview'])->name('prnpriview');
+
 //   Route::get('/Paciente/{id}', [PacienteController::class, 'mostrarpaciente'])->name('paciente');
 });
 Route::group(['middleware' => 'medico'], function () {
     Route::get('/buscar_paciente', [\App\Http\Controllers\MedicoController::class, 'index'])->name('buscar_paciente');
     Route::post('/buscar_paciente/envio', [\App\Http\Controllers\MedicoController::class, 'buscar_paciente'])->name('buscar_paciente.envio');
+    Route::get('/add_historia_clinica', [\App\Http\Controllers\MedicoController::class, 'add_historia_clinica'])->name('add_historia_clinica');
+    Route::post('add_registro', [\App\Http\Controllers\MedicoController::class, 'add_registro'])->name('add_registro');
+    Route::post('borrar_registro', [\App\Http\Controllers\MedicoController::class, 'delete_evolucion'])->name('delete.historia');
 });
 

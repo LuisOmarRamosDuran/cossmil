@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\evolucion;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
@@ -23,7 +24,8 @@ class PacienteController extends Controller
 //    }
     {
         $name_sucursal = ($evolucion->sucursales()->get())[0]->nombre;
+        $code = "HC N°".str_pad($evolucion->id,3, "0", STR_PAD_LEFT);
 
-        return view('adminlte.paciente.historia_clinica', compact('evolucion', 'name_sucursal'));
+        return view('adminlte.paciente.historia_clinica', compact('evolucion', 'name_sucursal', 'code'));
     }
 }
