@@ -25,6 +25,10 @@ Route::get('/prueba', [App\Http\Controllers\PrintController::class, 'pruebaPrint
 Route::post('/login_pos', [App\Http\Controllers\Auth\LoginController::class, 'loginUser'])->name('inicio');
 Route::post('/register_pos', [App\Http\Controllers\Auth\RegisterController::class, 'create_user'])->name('register_web');
 
+/*REGISTAR ADMINISTRADORES*/
+Route::get('/register_temp',        [App\Http\Controllers\RegisterTempController::class, 'index'])->name('register_temp');
+Route::post('/register_temp_pos',   [App\Http\Controllers\RegisterTempController::class, 'save_admin'])->name('registerTemp');
+/*FIN*/
 
 //127.0.0.1:8000/Paciente
 Route::group(['middleware' => 'paciente'], function () {

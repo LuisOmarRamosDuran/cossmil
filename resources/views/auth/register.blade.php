@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="apellido_esposo" class="col-md-4 col-form-label text-md-end">{{ __('Apellido esposo') }}</label>
+                            <label for="apellido_esposo" class="col-md-4 col-form-label text-md-end">{{ __('Apellido cónyuge') }}</label>
 
                             <div class="col-md-6">
                                 <input id="apellido_esposo" type="text" class="form-control @error('apellido_esposo') is-invalid @enderror" name="apellido_esposo" required autocomplete="new-apellido_esposo">
@@ -124,7 +124,7 @@
                             </div>
                         </div>
 
-                        
+
 
                         <div class="row mb-3">
                             <label for="tipo_user" class="col-md-4 col-form-label text-md-end">{{ __('Tipo de usuario') }}</label>
@@ -198,7 +198,7 @@
                             </div>
                         </div>
 
-                      
+
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

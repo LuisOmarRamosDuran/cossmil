@@ -22,7 +22,7 @@ class MedicoMiddleware
             $user = Auth::user();
 
             $role_idUser = $user->id_rol;
-            if($role_idUser == 1 || $role_idUser == 2){
+            if($role_idUser == 1 || $role_idUser == 2 || $role_idUser == 3){
                 return $next($request);
             }
             else{

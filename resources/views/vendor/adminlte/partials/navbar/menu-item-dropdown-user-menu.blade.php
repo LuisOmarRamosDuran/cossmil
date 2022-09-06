@@ -68,6 +68,12 @@
                     {{ __('adminlte::menu.profile') }}
                 </a>
             @endif
+            @if(auth()->user()->id_rol == 3)
+                <div class="d-flex mx-auto mb-3">
+                    <button class="btn btn-danger btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("register_temp") }}">Registrar</a></button>
+                </div>
+            @endif
+
             <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif"
                href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-fw fa-power-off text-red"></i>
