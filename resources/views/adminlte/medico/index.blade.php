@@ -31,8 +31,13 @@
                         <form action="{{ route('buscar_paciente.envio') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Buscar paciente</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="matricula" aria-describedby="emailHelp" placeholder="Ingresa tu matricula">
+                                @if(auth()->user()->id_rol == 3)
+                                    <label for="exampleInputEmail1">Buscar usuarios</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="matricula" aria-describedby="emailHelp" placeholder="Ingresa tu matricula">
+                                @else
+                                    <label for="exampleInputEmail1">Buscar paciente</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="matricula" aria-describedby="emailHelp" placeholder="Ingresa tu matricula">
+                                @endif
                             </div>
                             <button type="submit" class="btn btn-primary btn-block rounded">Buscar</button>
                         </form>

@@ -268,7 +268,7 @@ return [
         [
             'text'       => 'HISTORIA CLINICA',
             'icon_color' => 'yellow',
-            'url'        => '#',
+            'url'        => '/paciente',
         ],
         [
             'text'       => 'LABORATORIOS',

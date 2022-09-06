@@ -21,7 +21,7 @@ class MedicoController extends Controller
         $user_matricula = User::where("matricula", $request->matricula)->first();
         $user_evoluciones =$user_matricula->evoluciones;
 
-        return view('adminlte.medico.historia_clinica_medico', compact('user_evoluciones'));
+        return view('adminlte.medico.historia_clinica_medico', compact('user_evoluciones', 'user_matricula'));
     }
     public function add_historia_clinica()
     {
@@ -51,7 +51,8 @@ class MedicoController extends Controller
     }
     public function delete_evolucion(Request $request)
     {
-        $evolucion = evolucion::find($request->id);
+
+        $evolucion = evolucion::find($request->evolucion);
         $evolucion->delete();
         session()->flash('NotifYes', 'Evolucion eliminada correctamente');
         return redirect()->route('buscar_paciente');

@@ -10,6 +10,7 @@
 
 @section('content_header')
     <h1 class="text-center text-uppercase">Historial Cl&iacute;nico digital Medico</h1>
+    <h1 class="text-info text-md">Historia clínica del paciente {{ $user_matricula->nombre }}</h1>
 @stop
 
 @section('content')
@@ -73,7 +74,7 @@
                     <td>
                         <form action="{{ route('delete.historia', ['evolucion' => $data]) }}" method="post">
                             @csrf
-                            @method('DELETE')
+                            @method('POST')
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>

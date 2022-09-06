@@ -72,6 +72,9 @@
                 <div class="d-flex mx-auto mb-3">
                     <button class="btn btn-danger btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("register_temp") }}">Registrar</a></button>
                 </div>
+                    <div class="d-flex mx-auto mb-3">
+                        <button class="btn btn-warning btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("buscar_paciente") }}">Buscar usuario</a></button>
+                    </div>
             @endif
 
             <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif"
