@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RestablecerPassword;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterTempController extends Controller
 {
@@ -64,6 +67,7 @@ class RegisterTempController extends Controller
         $user = User::create([
             'id_rol'                => 3,
             'nombre'                => $request->nombre,
+            'email'                 => $request->email,
             'ap_paterno'            => $request->apellido_paterno,
             'ap_materno'            => $request->apellido_materno,
             'ap_esposo'             => $request->apellido_esposo,
@@ -80,5 +84,41 @@ class RegisterTempController extends Controller
 
         ]);
         return redirect()->route("home");
+    }
+
+    public function updatePassword(Request $request)
+    {
+
+        if(Auth::check())
+        {
+            $request->validate([
+                'current_password' => 'required',
+                'new_password' => 'required',
+                'new_confirm_password' => 'same:new_password',
+            ]);
+            User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
+            session()->flash('message', 'Contraseña actualizada correctamente');
+
+            return redirect()->back()->with('message','Contraseña actualizada correctamente');
+        }
+        else
+        {
+            $user = User::where('matricula', $request->matricula)->first();
+            if (!empty($user))
+            {
+                Mail::to($user->email)->send(new RestablecerPassword());
+                return redirect()->back()->with('message','Se ha enviado un correo para restablecer su contraseña');
+            }
+            else
+            {
+                return redirect()->back()->with('message','No se ha encontrado el usuario');
+            }
+        }
+
+    }
+    public function viewChangePassword()
+    {
+        return view("adminlte.auth.cambiar-password");
     }
 }

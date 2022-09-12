@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('ap_materno');
             $table->string('ap_esposo');
             $table->string('matricula');
+            $table->string('email');
             $table->string('password');
             $table->date('fecha_nacimiento');
             $table->string('ci');

@@ -19,11 +19,11 @@ class EvolucionFactory extends Factory
         return [
             "diagnostico"=>$this->faker->text(),
             "conducta"=>$this->faker->text(),
-            "id_sucursal"=>$this->faker->randomElement([
-                1
-            ]),
-            "id_especialidad"=>$this->faker->numberBetween($min=1, $max=20),
-            "id_users"=>$this->faker->numberBetween($min=1, $max=2)
+//            "id_sucursal"=>$this->faker->randomElement([
+//                1
+//            ]),
+//            "id_especialidad"=>$this->faker->numberBetween($min=1, $max=20),
+            "user_id"=>$this->faker->numberBetween($min=1, $max=2)
         ];
     }
 }

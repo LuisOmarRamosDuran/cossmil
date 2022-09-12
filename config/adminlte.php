@@ -243,7 +243,7 @@ return [
         ],
         [
             'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'url'  => '/cambiar-contrasena',
             'icon' => 'fas fa-fw fa-lock',
             'topnav_right' => true,
         ],
@@ -281,11 +281,11 @@ return [
             'url'        => '#',
         ],
         [
-            'icon_color' => 'red',
-            'text' => 'CERRAR SESIÓN',
-            'url'  => 'logout',
-
+            'text'       => 'Buscar paciente',
+            'icon_color' => 'yellow',
+            'url'        => '/buscar_paciente',
         ],
+
     ],
 
     /*

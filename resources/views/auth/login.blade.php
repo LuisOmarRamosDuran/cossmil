@@ -55,9 +55,11 @@
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
+                                <a class="btn btn-link" type="submit" href="{{ route("view-remember-password") }}">
+                                    Olvid&oacute; su contraseña?
+                                </a>
                             </div>
                         </div>
-
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

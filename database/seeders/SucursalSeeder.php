@@ -16,6 +16,7 @@ class SucursalSeeder extends Seeder
     public function run()
     {
         sucursal::create([
+            "iniciales" => "SC",
             "nombre"=>"Santa Cruz",
         ]);//
     }

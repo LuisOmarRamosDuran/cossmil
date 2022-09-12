@@ -20,6 +20,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/enviarEmail', [App\Http\Controllers\PacienteController::class, 'enviarEmail'])->name('enviarEmail');
+
+Route::get('/cambiar-contrasena', [App\Http\Controllers\RegisterTempController::class, 'viewChangePassword'])->name('cambiar-contrasenaView');
+Route::post('/cambiar-contrasena-update', [App\Http\Controllers\RegisterTempController::class, 'updatePassword'])->name('cambiar-contrasenaPost');
+
+Route::get('/view-remember-password', function () {
+    return view('adminlte.auth.index-password-change');
+})->name('view-remember-password');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/prueba', [App\Http\Controllers\PrintController::class, 'pruebaPrint'])->name('prueba');
 Route::post('/login_pos', [App\Http\Controllers\Auth\LoginController::class, 'loginUser'])->name('inicio');

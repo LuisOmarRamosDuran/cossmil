@@ -82,7 +82,22 @@
             $("#historia_clinica").DataTable({
                 responsive : true,
                 autoWidth: false,
-                "order": [[ 4, "desc" ]]
+                "order": [[ 4, "desc" ]],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por p&aacute;gina",
+                    "zeroRecords": "No se encontraron resultados en su b&uacute;squeda",
+                    "searchPlaceholder": "Buscar registros",
+                    "info": "Mostrando registros de _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "No existen registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                }
             });
     </script>
 @stop

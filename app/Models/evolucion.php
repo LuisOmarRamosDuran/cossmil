@@ -15,6 +15,7 @@ class evolucion extends Model
 
         'diagnostico',
         'conducta',
+        'id_sucursal',
         //
         'id_especialidad',
         'id_users',
