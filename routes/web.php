@@ -56,5 +56,7 @@ Route::group(['middleware' => 'medico'], function () {
     Route::get('/add_historia_clinica', [\App\Http\Controllers\MedicoController::class, 'add_historia_clinica'])->name('add_historia_clinica');
     Route::post('add_registro', [\App\Http\Controllers\MedicoController::class, 'add_registro'])->name('add_registro');
     Route::post('borrar_registro', [\App\Http\Controllers\MedicoController::class, 'delete_evolucion'])->name('delete.historia');
+    Route::get('/update_historia_clinica/{evolucion}', [\App\Http\Controllers\MedicoController::class, 'indexUpdate'])->name('update_historia_clinica');
+    Route::post('/update_historia_clinica/update', [\App\Http\Controllers\MedicoController::class, 'update_historia_clinica'])->name('update_historia_clinica.update');
 });
 

@@ -11,6 +11,11 @@
 @section('content_header')
     <h1 class="text-center text-uppercase">Historial Cl&iacute;nico digital Medico</h1>
     <h1 class="text-info text-md">Historia clínica del paciente {{ $user_matricula->nombre }}</h1>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-warning">
+            <a href="{{ route('add_historia_clinica') }}" class="text-dark">Añadir historia cl&iacute;nica</a>
+        </button>
+    </div>
 @stop
 
 @section('content')
@@ -35,7 +40,6 @@
             <th>M&eacute;dico</th>
             <th>Diagn&oacute;stico</th>
             <th>Acci&oacute;n</th>
-            <th>Añadir</th>
             @if(Auth::user()->id_rol == 3)
                 <th>Eliminar</th>
             @endif
@@ -61,14 +65,14 @@
                 @endforeach
                 <td>{{ $data->diagnostico }}</td>
                 <td>
-                    <a href="{{ route('index.historia', ['evolucion' => $data]) }}" class="href">
-                        <button type="button" class="btn btn-success">Ver</button>
-                    </a>
-                </td>
-                <td>
-                    <a href="{{ route('add_historia_clinica') }}" class="href">
-                        <button type="button" class="btn btn-warning">Añadir</button>
-                    </a>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ route('index.historia', ['evolucion' => $data]) }}" class="href">
+                            <button type="button" class="btn btn-success">Visualizar</button>
+                        </a>
+                        <a href="{{ route('update_historia_clinica', ['evolucion' => $data]) }}" class="href">
+                            <button type="button" class="btn btn-warning">Modificar</button>
+                        </a>
+                    </div>
                 </td>
                 @if(Auth::user()->id_rol == 3)
                     <td>
@@ -90,7 +94,6 @@
             <th>M&eacute;dico</th>
             <th>Diagn&oacute;stico</th>
             <th>Acci&oacute;n</th>
-            <th>Añadir</th>
             @if(Auth::user()->id_rol == 3)
                 <th>Eliminar</th>
             @endif

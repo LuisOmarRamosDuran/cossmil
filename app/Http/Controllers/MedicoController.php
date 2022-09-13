@@ -40,6 +40,7 @@ class MedicoController extends Controller
         $evolucion = evolucion::create([
             'diagnostico' =>$request->textDiagnostico,
             'conducta' =>$request->textConducta,
+            'user_id' => $paciente,
         ]);
         $createEvolEsp = DB::unprepared("insert into evolucion_especialidad (evolucion_id,especialidad_id) values ($evolucion->id, $request->selectEspecialidad);");
         $createEvolSuc = DB::unprepared("insert into evolucion_sucursal (evolucion_id,sucursal_id) values ($evolucion->id, $request->selectSucursal);");
@@ -49,6 +50,45 @@ class MedicoController extends Controller
         session()->flash('NotifYes', 'Evolucion creada correctamente');
         return redirect()->route('buscar_paciente');
     }
+
+    public function indexUpdate(evolucion $evolucion)
+    {
+        $sucursales = sucursal::all();
+        $especialidades = especialidad::all();
+        $users_evolucion = $evolucion->users()->get();
+        foreach ($users_evolucion as $user)
+        {
+            if($user->id_rol == 1)
+            {
+                $users_evolucion_paciente = $user->matricula;
+            }
+            else if ($user->id_rol == 2)
+            {
+                $users_evolucion_medico = $user->nombre . " " . $user->ap_paterno . " " . $user->ap_materno;
+            }
+        }
+//        dd($users_evolucion_paciente." ".$users_evolucion_medico);
+//        dd($evolucion->sucursales()->first()->id);
+        return view('adminlte.medico.update_historia_clinica', compact('evolucion', 'sucursales', 'especialidades', 'users_evolucion_paciente', 'users_evolucion_medico'));
+    }
+
+    public function update_historia_clinica(Request $request)
+    {
+        $evolucion = evolucion::find($request->id_evolucion);
+        $evolucion->diagnostico = $request->textDiagnostico;
+        $evolucion->conducta = $request->textConducta;
+        $evolucion->save();
+        $evolucion->especialidades()->sync($request->selectEspecialidad);
+        $evolucion->sucursales()->sync($request->selectSucursal);
+        session()->flash('NotifYes', 'Evolucion actualizada correctamente');
+        return redirect()->route('buscar_paciente');
+
+//        selectSucursal
+//        selectEspecialidad
+//        textDiagnostico
+//        textConducta
+    }
+
     public function delete_evolucion(Request $request)
     {
 

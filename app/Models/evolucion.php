@@ -18,7 +18,7 @@ class evolucion extends Model
         'id_sucursal',
         //
         'id_especialidad',
-        'id_users',
+        'user_id',
     ];
     public function sucursales()
     {
