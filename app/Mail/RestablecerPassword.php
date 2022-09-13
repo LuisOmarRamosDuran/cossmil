@@ -11,15 +11,15 @@ class RestablecerPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
-
+    public $id_user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id_user)
     {
-        //
+        $this->id_user = $id_user;
     }
 
     /**
@@ -29,6 +29,10 @@ class RestablecerPassword extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.paswords')->subject('Restablecer Contraseña');
+        return $this->markdown('email.paswords')
+            ->subject('Restablecer Contraseña')
+            ->with([
+                'id_user' => $this->id_user,
+            ]);
     }
 }

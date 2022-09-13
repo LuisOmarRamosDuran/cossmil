@@ -13,20 +13,24 @@
                     <div class="card-header">Actualizar la contraseña</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route("cambiar-contrasenaPost") }}">
+                        <form method="POST" action="@if(\Illuminate\Support\Facades\Auth::check()){{ route("cambiar-contrasenaPost") }} @else
+                        {{ route("cambiar-contrasenaPost2") }}
+                         @endif">
                             @csrf
-
                             @foreach ($errors->all() as $error)
                                 <p class="text-danger">{{ $error }}</p>
                             @endforeach
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Contrase&ntilde;a actual</label>
+                            @if(\Illuminate\Support\Facades\Auth::check())
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">Contrase&ntilde;a actual</label>
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
+                                    <div class="col-md-6">
+                                        <input id="password" type="password" class="form-control" name="current_password" autocomplete="current-password">
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                            @endif
 
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Nueva contrase&ntilde;a</label>
@@ -44,6 +48,10 @@
                                 </div>
                             </div>
 
+                            @if(empty($id))
+                            @else
+                                <input id="id_user" name="id_user" type="hidden" value="{{ $id }}">
+                            @endif
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

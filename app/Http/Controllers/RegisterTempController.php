@@ -107,7 +107,7 @@ class RegisterTempController extends Controller
             $user = User::where('matricula', $request->matricula)->first();
             if (!empty($user))
             {
-                Mail::to($user->email)->send(new RestablecerPassword());
+                Mail::to($user->email)->send(new RestablecerPassword($user->id));
                 return redirect()->back()->with('message','Se ha enviado un correo para restablecer su contraseña');
             }
             else
@@ -115,10 +115,26 @@ class RegisterTempController extends Controller
                 return redirect()->back()->with('message','No se ha encontrado el usuario');
             }
         }
-
     }
+
+    public function updatePassword2(Request $request)
+    {
+        $user = User::find($request->id_user);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+        session()->flash('message', 'Contraseña actualizada correctamente');
+
+        return redirect()->back()->with('message','Contraseña actualizada correctamente');
+    }
+
     public function viewChangePassword()
     {
+
         return view("adminlte.auth.cambiar-password");
+    }
+    public function viewChangePassword2($id)
+    {
+
+        return view("adminlte.auth.cambiar-password", compact('id'));
     }
 }

@@ -23,7 +23,10 @@ Auth::routes();
 Route::get('/enviarEmail', [App\Http\Controllers\PacienteController::class, 'enviarEmail'])->name('enviarEmail');
 
 Route::get('/cambiar-contrasena', [App\Http\Controllers\RegisterTempController::class, 'viewChangePassword'])->name('cambiar-contrasenaView');
+Route::get('/cambiar-contrasena/{id}', [App\Http\Controllers\RegisterTempController::class, 'viewChangePassword2'])->name('cambiar-contrasenaView2');
+
 Route::post('/cambiar-contrasena-update', [App\Http\Controllers\RegisterTempController::class, 'updatePassword'])->name('cambiar-contrasenaPost');
+Route::post('/cambiar-contrasena-update2', [App\Http\Controllers\RegisterTempController::class, 'updatePassword2'])->name('cambiar-contrasenaPost2');
 
 Route::get('/view-remember-password', function () {
     return view('adminlte.auth.index-password-change');
