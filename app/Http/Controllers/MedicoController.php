@@ -2,20 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\documento;
 use App\Models\especialidad;
 use App\Models\evolucion;
+use App\Models\laboratorio;
 use App\Models\receta;
 use App\Models\sucursal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class MedicoController extends Controller
 {
     public function index()
     {
         return view('adminlte.medico.index');
+    }
+
+    public function subir_archivos(Request $request)
+    {
+        $archivos = $request->file('file')->store('public/documentos');
+
+        $url = Storage::url($archivos);
+
+        $documento = documento::create([
+            'nombre' => "archivo",
+            'url' => $url,
+            'id_informe' => 16,
+        ]);
+        Cache::put('documento' . auth()->user()->id, $documento);
+    }
+
+    public function crear_laboratorio(Request $request)
+    {
+        $evolucion = Cache::get('evolucion'.auth()->user()->id);
+
+        $laboratorio_create = laboratorio::create([
+            'tipo' => $request->inputTypeLab,
+            'id_responsable' => auth()->user()->id,
+            'user_id' => $evolucion->user_id,
+            'id_evolution' => $evolucion->id,
+            'id_documento'  => Cache::get("documento".auth()->user()->id)->id,
+        ]);
+
+        session()->flash('NotifYes', 'Laboratorio creado correctamente');
+        return redirect()->route('index_laboratorio',$evolucion->user_id);
+    }
+
+    public function index_crear_laboratorio($id_user)
+    {
+        $evolucion = evolucion::find($id_user);
+        $laboratorio_count = laboratorio::all()->count();
+        if(!Cache::has("evolucion" . auth()->user()->id))
+        {
+            Cache::put('evolucion' . auth()->user()->id, $evolucion);
+        }
+        foreach ($evolucion->users as $user) {
+            if ($user->id_rol == 1) {
+                $user_matricula = $user;
+            }
+        }
+        $sucursales = sucursal::all();
+        $especialidades = especialidad::all();
+        return view("adminlte.medico.add_laboratorio", compact('evolucion', 'laboratorio_count', 'user_matricula', 'sucursales', 'especialidades'));
+    }
+
+    public function index_laboratorio($id_user)
+    {
+        $user_matricula = User::find($id_user);
+        $user_evoluciones = $user_matricula->evoluciones;
+
+        $user_laboratorio = $user_matricula->laboratorios;
+
+
+        return view('adminlte.medico.lab_medico', compact('user_laboratorio', 'user_evoluciones', 'user_matricula'));
     }
 
     public function buscar_paciente(Request $request)

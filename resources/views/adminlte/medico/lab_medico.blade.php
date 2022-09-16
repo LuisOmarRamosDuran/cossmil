@@ -10,12 +10,7 @@
 
 @section('content_header')
     <h1 class="text-center text-uppercase">Historial Cl&iacute;nico digital Medico</h1>
-    <h1 class="text-info text-md">Historia clínica del paciente {{ $user_matricula->nombre }}</h1>
-    <div class="d-flex justify-content-end">
-        <button class="btn btn-warning">
-            <a href="{{ route('add_historia_clinica') }}" class="text-dark">Añadir historia cl&iacute;nica</a>
-        </button>
-    </div>
+    <h1 class="text-info text-md">Laboratorios del paciente {{ $user_matricula->nombre }}</h1>
 @stop
 
 @section('content')
@@ -38,7 +33,7 @@
             <th>Sucursal</th>
             <th>Especialidad</th>
             <th>M&eacute;dico</th>
-            <th>Diagn&oacute;stico</th>
+            <th>Laboratorios</th>
             <th>Acci&oacute;n</th>
             @if(Auth::user()->id_rol == 3)
                 <th>Eliminar</th>
@@ -63,15 +58,26 @@
                         <td>{{ $medico->nombre }}</td>
                     @endif
                 @endforeach
-                <td>{{ $data->diagnostico }}</td>
                 <td>
-                    <div class="d-flex justify-content-center">
-                        <a href="{{ route('index.historia', ['evolucion' => $data]) }}" class="href">
+                    @foreach($data->laboratorios as $receta)
+                        <ul>
+                            <li style="list-style: none;">{{ "RC-" . $receta->tipo . "," }}</li>
+                        </ul>
+
+                        <a href="{{ asset($receta->documento->url) }}" class="href">
                             <button type="button" class="btn btn-success">Visualizar</button>
                         </a>
-                        <a href="{{ route('update_historia_clinica', ['evolucion' => $data]) }}" class="href">
-                            <button type="button" class="btn btn-warning">Modificar</button>
-                        </a>
+                    @endforeach
+                </td>
+                <td>
+                    <div class="d-flex justify-content-center">
+
+                        {{--                        <a href="{{ route('update_historia_clinica', ['evolucion' => $data]) }}" class="href">--}}
+                        {{--                            <button type="button" class="btn btn-warning">Modificar</button>--}}
+                        {{--                        </a>--}}
+                        <button class="btn btn-warning">
+                            <a href="{{ route('crear_laboratorio', ["id_user" => $data]) }}" class="text-dark">Añadir Laboratorio</a>
+                        </button>
                     </div>
                 </td>
                 @if(Auth::user()->id_rol == 3)
@@ -92,7 +98,7 @@
             <th>Sucursal</th>
             <th>Especialidad</th>
             <th>M&eacute;dico</th>
-            <th>Diagn&oacute;stico</th>
+            <th>Laboratorios</th>
             <th>Acci&oacute;n</th>
             @if(Auth::user()->id_rol == 3)
                 <th>Eliminar</th>
@@ -100,6 +106,7 @@
         </tr>
         </tfoot>
     </table>
+
     <div class="d-flex justify-content-center">
         <button class="btn btn-danger text-white"><a href="{{ route("index_receta", ["id_user" => $user_matricula->id]) }}" target="_blank" class="text-white">Recetas</a></button>
         <button class="btn btn-danger text-white"><a href="{{ route("index_laboratorio", ["id_user" => $user_matricula->id]) }}" target="_blank" class="text-white">Laboratorios</a></button>

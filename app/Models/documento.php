@@ -15,4 +15,9 @@ class documento extends Model
         'url',
         'id_informe',
     ];
+
+    public function laboratorio()
+    {
+        return $this->hasOne(laboratorio::class, 'id_documento');
+    }
 }

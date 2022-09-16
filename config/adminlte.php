@@ -275,6 +275,7 @@ return [
             'text'       => 'LABORATORIOS',
             'icon_color' => 'yellow',
             'url'        => '#',
+            'active' => ['laboratorio', 'laboratorio', 'laboratorio*', 'regex:@^laboratorio/[0-9]+$@']
         ],
         [
             'text'       => 'RECETAS',

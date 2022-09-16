@@ -37,4 +37,9 @@ class evolucion extends Model
     {
         return $this->hasMany(receta::class, 'id_evolucion');
     }
+
+    public function laboratorios()
+    {
+        return $this->hasMany(laboratorio::class, 'id_evolution');
+    }
 }
