@@ -13,8 +13,15 @@ class receta extends Model
         'id',
         'codigoReceta',
         'id_responsable',
+        'id_paciente',
+        'id_evolucion',
         'medicamento',
         'cantidad',
         'aplicacionMedicamento',
     ];
+
+    public function evolucion()
+    {
+        return $this->belongsTo(evolucion::class,'id_evolucion');
+    }
 }

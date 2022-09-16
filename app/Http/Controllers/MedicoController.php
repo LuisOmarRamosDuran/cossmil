@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\especialidad;
 use App\Models\evolucion;
+use App\Models\receta;
 use App\Models\sucursal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class MedicoController extends Controller
 {
@@ -19,10 +21,74 @@ class MedicoController extends Controller
     public function buscar_paciente(Request $request)
     {
         $user_matricula = User::where("matricula", $request->matricula)->first();
-        $user_evoluciones =$user_matricula->evoluciones;
+        $user_evoluciones = $user_matricula->evoluciones;
 
         return view('adminlte.medico.historia_clinica_medico', compact('user_evoluciones', 'user_matricula'));
     }
+
+    public function index_receta($id_user)
+    {
+        $user_matricula = User::find($id_user);
+        $user_evoluciones = $user_matricula->evoluciones;
+
+        $user_recetas = $user_matricula->recetas;
+
+        return view('adminlte.medico.recetas_medico', compact('user_evoluciones', 'user_matricula', 'user_recetas'));
+    }
+
+    public function index_crear_receta($id_user)
+    {
+        $evolucion_find = evolucion::find($id_user);
+        if(!Cache::has("evolucion" . auth()->user()->id))
+        {
+            Cache::put('evolucion' . auth()->user()->id, $evolucion_find);
+        }
+        foreach ($evolucion_find->users as $user) {
+            if ($user->id_rol == 1) {
+                $user_matricula = $user;
+            }
+        }
+        $sucursales = sucursal::all();
+        $especialidades = especialidad::all();
+        $recetas_count = receta::all()->count();
+
+        return view("adminlte.medico.add_receta", compact('sucursales', 'especialidades', 'recetas_count', 'user_matricula', 'evolucion_find'));
+    }
+
+    public function crear_receta(Request $request)
+    {
+        $evolucion = Cache::get('evolucion'.auth()->user()->id);
+
+        $receta = receta::create([
+            'codigoReceta' => $request->inputCodeReceta,
+            'id_responsable' => auth()->user()->id,
+            'id_paciente' => $evolucion->user_id,
+            'id_evolucion' => $evolucion->id,
+            'medicamento' => $request->textMedicamento,
+            'cantidad' => $request->inputCant,
+            'aplicacionMedicamento' => $request->textAplicacion,
+        ]);
+
+        session()->flash('NotifYes', 'Receta creada correctamente');
+        return redirect()->route('index_receta', $evolucion->user_id);
+    }
+
+    public function ver_receta($id_receta)
+    {
+        $receta = receta::find($id_receta);
+        $code = "RC-".str_pad($receta->id,3, "0", STR_PAD_LEFT);
+        $name_sucursal = ($receta->evolucion->sucursales()->get())[0]->nombre;
+        foreach ($receta->evolucion->users as $user) {
+            if ($user->id_rol == 1) {
+                $user_matricula = $user;
+            }
+            if ($user->id_rol == 2) {
+                $user_medico = $user;
+            }
+        }
+        return view("adminlte.medico.receta", compact('receta', 'code', 'name_sucursal', 'user_matricula', 'user_medico'));
+    }
+
     public function add_historia_clinica()
     {
         $sucursales = sucursal::all();

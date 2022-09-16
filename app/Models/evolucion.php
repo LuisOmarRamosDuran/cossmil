@@ -32,4 +32,9 @@ class evolucion extends Model
     {
         return $this->belongsToMany(User::class, 'evolucion_user', 'evolucion_id');
     }
+
+    public function recetas()
+    {
+        return $this->hasMany(receta::class, 'id_evolucion');
+    }
 }

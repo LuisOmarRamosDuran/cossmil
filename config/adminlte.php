@@ -268,7 +268,8 @@ return [
         [
             'text'       => 'HISTORIA CLINICA',
             'icon_color' => 'yellow',
-            'url'        => '/paciente',
+            'url'        => '#',
+            'active' => ['buscar_paciente', 'buscar_paciente', 'buscar_paciente*', 'regex:@^buscar_paciente/[0-9]+$@']
         ],
         [
             'text'       => 'LABORATORIOS',
@@ -279,6 +280,7 @@ return [
             'text'       => 'RECETAS',
             'icon_color' => 'yellow',
             'url'        => '#',
+            'active' => ['receta', 'receta', 'receta*', 'regex:@^receta/[0-9]+$@']
         ],
         [
             'text'       => 'Buscar paciente',
