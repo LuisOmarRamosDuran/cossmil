@@ -9,7 +9,7 @@
 
     {{-- Sidebar menu --}}
     
-    <div class="container-fluid bg-primary">
+    <div class="container-fluid bg-primary"> 
         <div class="row">
             <div class="col">
                 <h6 style="font-size:0.8rem">Nombre Completo</h6>
@@ -29,7 +29,7 @@
             </div>
             <div class="col">
                 {{-- {{ assets(/asssets/img/imgUser/ivan.png) }} --}}
-                 <img src="{{ asset('/assets/img/usuarios/arebalo.jpg')  }}" style="width:90%; height:60%;" />
+                 <img src="{{ asset(auth()->user()->foto)  }}" style="width:90%; height:30%;" />
             </div>
         </div>
         

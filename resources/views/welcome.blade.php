@@ -38,7 +38,7 @@
                     @endauth
                 </div>
             @endif
-            <img class="sm:rounded-lg img-lg" width="260rem" height="260rem" src="{{ asset("1.jpg") }}"/>
+            <img class="sm:rounded-lg img-lg" width="1500rem" height="650rem" src="{{ asset("fondo.jpg") }}"/>
             </div>
         </div>
     </body>

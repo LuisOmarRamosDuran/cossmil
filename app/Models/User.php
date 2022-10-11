@@ -33,6 +33,8 @@ class User extends Authenticatable
         'grado',
         'fuerza',
         'id_genero',
+        'email',
+        'foto',
 
     ];
 

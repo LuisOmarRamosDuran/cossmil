@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterTempController extends Controller
 {
@@ -63,9 +64,10 @@ class RegisterTempController extends Controller
 
         $fecha_a = Carbon::parse($request->fecha_nacimiento)->format('y');
 
-
+        $foto= $request->file("foto")->store("public/fotografias");
+        $url= Storage::url($foto);
         $user = User::create([
-            'id_rol'                => 3,
+            'id_rol'                => $request->tipo_user,
             'nombre'                => $request->nombre,
             'email'                 => $request->email,
             'ap_paterno'            => $request->apellido_paterno,
@@ -74,6 +76,7 @@ class RegisterTempController extends Controller
             'carnet_asegurado'      => $fecha_a . $feche_mes . $feche_dia . $ApellidoPat . $ApellidoMat . $Name ,
             'carnet_beneficiario'   => $request->carnet_beneficiario,
             'ci'                    => $request->ci,
+            'foto'                  => $url,
             'grado'                 => $request->id_grado,
             'fecha_nacimiento'      => $request->fecha_nacimiento,
             'id_genero'             => $request->tipo_genero,

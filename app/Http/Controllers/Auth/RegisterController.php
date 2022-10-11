@@ -88,6 +88,7 @@ class RegisterController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }*/
         // 
+        
         $fechaaa= Carbon::createFromFormat("Y-m-d",$request->fecha_nacimiento,"America/La_Paz");
         $fecha_with_zero = Carbon::createFromDate($request->fecha_nacimiento);
         
@@ -132,7 +133,7 @@ class RegisterController extends Controller
         
         $fecha_a = Carbon::parse($request->fecha_nacimiento)->format('y');
         
-
+        $foto= $request->file("foto")->store("public/fotografias");
         $user = User::create([
             'nombre'                => $request->nombre,
             'ap_paterno'            => $request->apellido_paterno,

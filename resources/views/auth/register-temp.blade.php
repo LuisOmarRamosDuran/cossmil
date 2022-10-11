@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Register Admins') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('registerTemp') }}">
+                        <form method="POST" action="{{ route('registerTemp') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
@@ -37,6 +37,21 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="row mb-3">
+                            <label for="foto" class="col-md-4 col-form-label text-md-end">{{ __('foto') }}</label>
+                            <div class="col-md-6">
+                            <input id="foto" name="foto" type ="file"/>
+
+
+                                @error('tipo_user')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
 
                             <div class="row mb-3">
                                 <label for="apellido_paterno" class="col-md-4 col-form-label text-md-end">{{ __('Apellido paterno') }}</label>
