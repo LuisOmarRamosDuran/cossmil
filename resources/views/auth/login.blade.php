@@ -1,24 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container ml-0 pr-0" >
+<div class="container mr-0 " >
 
 
-    <div class="d-flex row justify-content-between">
+    <div class="row">
 
-<div class="col-md-8">
-<img class="sm:rounded-lg" width="100%" height="auto" src="{{ asset("ladoiz.jpg") }}"style ="display:block;"/>
-</div>
+    <div class="col-md-6">
+        <img class="sm:rounded-lg" width="100%" height="auto" src="{{ asset("ladoiz.jpg") }}"style ="display:block;"/>
+    </div>
 
 
-        <div class="col-md-4 ">
+        <div class="col-md-6">
         <div class="row align-self-end">
                     <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                
-                
+
+
                  <form method="POST" action="{{ route('inicio') }}">
                         @csrf
 
@@ -85,8 +85,8 @@
                             </div>
                         </div>
                     </form>
-                
-                   
+
+
                 </div>
             </div>
         </div>

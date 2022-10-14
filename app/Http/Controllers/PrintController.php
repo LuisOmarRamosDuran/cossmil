@@ -11,7 +11,6 @@ class PrintController extends Controller
 {
     public function prnpriview(evolucion $evolucion)
     {
-        dd($evolucion);
         $name_sucursal = ($evolucion->sucursales()->get())[0]->nombre;
         $pdf = PDF::loadView('PDF.printPDF.printPacientePDF', compact('evolucion', 'name_sucursal'));
 //        return view('PDF.printPDF.printPacientePDF', compact("evolucion", "name_sucursal"));;

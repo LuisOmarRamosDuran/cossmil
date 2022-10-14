@@ -55,6 +55,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($credenciales))
         {
+            $request->session()->regenerate();
             if (\auth()->user()->id_rol == 1)
             {
                 return redirect()->route('paciente');
@@ -64,7 +65,7 @@ class LoginController extends Controller
                 return redirect()->route('buscar_paciente');
             }
         }
-        return 'Login fallido';
+        return redirect()->back();
 
 
     }
