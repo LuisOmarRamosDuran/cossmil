@@ -7,8 +7,7 @@
         @include('adminlte::partials.common.brand-logo-xs')
     @endif
 
-    {{-- Sidebar menu --}}
-    
+  {{-- Sidebar menu --}}
     <div class="container-fluid bg-primary"> 
         <div class="row">
             <div class="col">
@@ -41,6 +40,10 @@
         border-top: 1px solid rgba(47, 69, 56, 1);" />
     <div class="sidebar" style="background-color: rgba(26, 69, 56, 1) ;">
         <nav class="pt-2"></nav>
+
+    {{-- Sidebar menu --}}
+    <div class="sidebar">
+        <nav class="pt-2">
             <ul class="nav nav-pills nav-sidebar flex-column {{ config('adminlte.classes_sidebar_nav', '') }}"
                 data-widget="treeview" role="menu"
                 @if(config('adminlte.sidebar_nav_animation_speed') != 300)

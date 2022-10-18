@@ -13,113 +13,112 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 </head>
 <body>
-
+<style>
+    .texto_upper
+    {
+        text-transform: uppercase; 
+    }
+    .espacio_celdas{
+        width: 50%;
+    }
+</style>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-center text-uppercase">Historia Cl&iacute;nica</h1>
-        </div>
-    </div>
+    <h1 class="text-center text-uppercase">Historia Cl&iacute;nica</h1>
 </div>
+<br/>
 <div class="container mb-10">
-    <div class="row">
-        <div class="col-md-4">
-
-        </div>
-        <div class="col-md-4">
-            <span class="font-weight-bold text-uppercase d-flex justify-content-center">Evolución y tratamiento</span>
-        </div>
-        <div class="col-md-4">
-            <span>codigo</span>
-        </div>
+    <div>
+        <table width="100%">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th align="right" class="espacio_celdas texto_upper font-weight-bold text-center">Evolución y tratamiento</th>
+                        <th align="right" class="espacio_celdas texto_upper font-weight-bold text-right">C&oacute;digo: HC N°{{ $evolucion->id }}</th>
+                    </tr>
+                </thead>
+            </table>        
     </div>
-    <div class="container font-weight-bold">
-        <div class="row">
-            <div class="col-md-4">
-                <span class="text-uppercase">Sucursal</span>
-            </div>
-            <div class="col-md-4">
-                <span class="text-uppercase">{{ $name_sucursal }}</span>
-            </div>
-            <div class="col-md-4">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <span class="text-uppercase">Cod. asegurado</span>
-            </div>
-            <div class="col-md-4">
-                <span class="text-uppercase">{{ auth()->user()->matricula }}</span>
-            </div>
-            <div class="col-md-4">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <span class="text-uppercase">Cod. beneficiario</span>
-            </div>
-            <div class="col-md-4">
-                <span class="text-uppercase">{{ auth()->user()->matricula }}</span>
-            </div>
-            <div class="col-md-4">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <span class="text-uppercase">Fecha y hora:</span>
-            </div>
-            <div class="col-md-4">
-                <span class="text-uppercase">{{ \Carbon\Carbon::parse($evolucion->created_at)->format('d/m/Y h:m') }}</span>
-            </div>
-            <div class="col-md-4">
-
-            </div>
-        </div>
-        <div class="row mt-4 mb-4">
-            <div class="col-md-12 text-uppercase font-weight-bold d-flex justify-content-center">
-                paciente
-            </div>
-        </div>
-        <div class="row text-center">
-            @foreach($evolucion->users()->get() as $user)
-                @if($user->id_rol == 1)
-                    <div class="col-md-4">
-                        <span class="text-uppercase">{{ $user->ap_paterno }}</span>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="text-uppercase">{{ $user->ap_materno }}</span>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="text-uppercase">{{ $user->nombre }}</span>
-                    </div>
-                @endif
-            @endforeach
-        </div>
-        <div class="row text-center font-weight-bold">
-            <div class="col-md-4">
-                <span class="text-uppercase">Ap paterno</span>
-            </div>
-            <div class="col-md-4">
-                <span class="text-uppercase">Ap materno</span>
-            </div>
-            <div class="col-md-4">
-                <span class="text-uppercase">nombres</span>
-            </div>
-        </div>
+    <br/>
+    <div>
+        <table style="width: 100%;">
+            <thead>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="espacio_celdas">
+                    <img src="{{asset('assets/img/escudo.png')}}" style="width:100px;height:100px;">
+                </td>
+                <td class="espacio_celdas">
+                        <span class="text-uppercase">Sucursal</span>
+                        <br>
+                        <span class="text-uppercase">Cod. asegurado</span>
+                        <br>
+                        <span class="text-uppercase">Cod. beneficiario</span>
+                        <br>
+                        <span class="text-uppercase">Fecha y hora:</span>
+                </td>
+                <td class="espacio_celdas">
+                    @foreach($evolucion->users()->get() as $user)
+                        @if($user->id_rol == 1)
+                            <span class="text-uppercase">{{ $name_sucursal }}</span>
+                            <br>
+                            <span class="text-uppercase">{{ $user->matricula }}</span>
+                            <br>
+                            <span class="text-uppercase">{{ $user->matricula }}</span>
+                            <br>
+                            <span class="text-uppercase">{{ \Carbon\Carbon::parse($evolucion->created_at)->format('d/m/Y h:m') }}</span>
+                        @endif
+                    @endforeach
+                </td>
+            </tr>
+            </tbody>    
+        </table>
     </div>
+    <br/>
+    <div>
+        <table style="width: 100%;">
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach($evolucion->users()->get() as $user)
+                        @if($user->id_rol == 1)
+                            <td class="espacio_celdas text-center texto_upper font-weight-bold">
+                                {{ $user->ap_paterno }}
+                            </td>
+                            <td class="espacio_celdas text-center texto_upper font-weight-bold">
+                                {{ $user->ap_materno }}
+                            </td>
+                            <td class="espacio_celdas text-center texto_upper font-weight-bold">
+                                {{ $user->nombre }}
+                            </td>
+                        @endif
+                    @endforeach
+                </tr>
+                <tr>
+                    <td class="espacio_celdas text-center texto_upper font-weight-bold">
+                        Ap paterno
+                    </td>
+                    <td class="espacio_celdas text-center texto_upper font-weight-bold">
+                        Ap materno
+                    </td>
+                    <td class="espacio_celdas text-center texto_upper font-weight-bold">
+                        Nombres
+                    </td>
+                </tr>
+            </tbody>    
+        </table>
+    </div>        
 </div>
 <div class="container mt-3">
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th scope="col">Fecha</th>
-            <th scope="col">Hora</th>
-            <th scope="col">Descripción de consulta</th>
-            <th scope="col">Conducta</th>
+            <th scope="col" class="text-white bg-info">Fecha</th>
+            <th scope="col" class="text-white bg-info">Hora</th>
+            <th scope="col" class="text-white bg-info">Descripción de consulta</th>
+            <th scope="col" class="text-white bg-info">Conducta</th>
         </tr>
         </thead>
         <tbody>

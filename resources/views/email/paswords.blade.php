@@ -3,7 +3,7 @@
 
 Cambio de contraseña
 
-@component('mail::button', ['url' => 'http://127.0.0.1:8000/cambiar-contrasena/'.$id_user])
+@component('mail::button', ['url' => 'http://cossmil.test/cambiar-contrasena/'.$id_user])
 Presione para restablecer su contraseña
 @endcomponent
 

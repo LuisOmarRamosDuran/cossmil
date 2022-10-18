@@ -20,11 +20,17 @@ class PacienteController extends Controller
     }
 
     public function historia(evolucion $evolucion)
-//    {
-//        $data = $evolucion->historias;
-//        return view('adminlte.paciente.historia', compact('data'));
-//    }
     {
+        $name_sucursal = ($evolucion->sucursales()->get())[0]->nombre;
+        $code = "HC N°".str_pad($evolucion->id,3, "0", STR_PAD_LEFT);
+
+        return view('adminlte.paciente.historia_clinica', compact('evolucion', 'name_sucursal', 'code'));
+    }
+
+    public function historia_user()
+    {
+        $id_user = auth()->user();
+        dd($id_user);
         $name_sucursal = ($evolucion->sucursales()->get())[0]->nombre;
         $code = "HC N°".str_pad($evolucion->id,3, "0", STR_PAD_LEFT);
 
@@ -33,7 +39,7 @@ class PacienteController extends Controller
 
     public function enviarEmail()
     {
-        Mail::to(auth()->user()->email)->send(new RestablecerPassword());
+        Mail::to(auth()->user()->email)->send(new RestablecerPassword(auth()->user()->id));
         return "Email enviado";
     }
 }

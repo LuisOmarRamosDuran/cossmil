@@ -20,65 +20,46 @@
         </div>
     </div>
 @stop
-
+<br>
 @section('content')
     <div class="container mb-10">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
 
             </div>
-            <div class="col-md-4">
-                <span class="font-weight-bold text-uppercase d-flex justify-content-center">Evolución y tratamiento</span>
+            <div class="col-md-8">
+                <h3 class="font-weight-bold text-uppercase d-flex justify-content-center">Evolución y tratamiento</h3>
             </div>
-            <div class="col-md-4">
-                <span class="font-weight-bold">{{ $code }}</span>
+            <div class="col-md-2">
+                <h5 class="font-weight-bold">{{ $code }}</h5>
             </div>
         </div>
+        <br>
         <div class="container font-weight-bold">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
+                    <img src="{{asset('assets/img/escudo.png')}}" style="width:100px;height:100px;">
+                </div>
+                <div class="col-md-5">
                     <span class="text-uppercase">Sucursal</span>
-                </div>
-                <div class="col-md-4">
-                    <span class="text-uppercase">{{ $name_sucursal }}</span>
-                </div>
-                <div class="col-md-4">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
+                    <br>
                     <span class="text-uppercase">Cod. asegurado</span>
+                     <br>
+                     <span class="text-uppercase">Cod. beneficiario</span>
+                     <br>
+                     <span class="text-uppercase">Fecha y hora:</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
+                    <span class="text-uppercase">{{ $name_sucursal }}</span>
+                    <br>
                     <span class="text-uppercase">{{ auth()->user()->matricula }}</span>
-                </div>
-                <div class="col-md-4">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="text-uppercase">Cod. beneficiario</span>
-                </div>
-                <div class="col-md-4">
+                    <br>
                     <span class="text-uppercase">{{ auth()->user()->matricula }}</span>
-                </div>
-                <div class="col-md-4">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <span class="text-uppercase">Fecha y hora:</span>
-                </div>
-                <div class="col-md-4">
+                    <br>
                     <span class="text-uppercase">{{ \Carbon\Carbon::parse($evolucion->created_at)->format('d/m/Y h:m') }}</span>
                 </div>
-                <div class="col-md-4">
-
-                </div>
             </div>
+        
             <div class="row mt-4 mb-4">
                 <div class="col-md-12 text-uppercase font-weight-bold d-flex justify-content-center">
                     paciente

@@ -12,7 +12,7 @@ class PrintController extends Controller
     public function prnpriview(evolucion $evolucion)
     {
         $name_sucursal = ($evolucion->sucursales()->get())[0]->nombre;
-        $pdf = PDF::loadView('PDF.printPDF.printPacientePDF', compact('evolucion', 'name_sucursal'));
+        $pdf = PDF::loadView('PDF.printPDF.printPacientePDF', compact('evolucion', 'name_sucursal'))->setPaper("letter");
 //        return view('PDF.printPDF.printPacientePDF', compact("evolucion", "name_sucursal"));;
 //        return view('PDF.printPDF.pruebaPDF');
         return $pdf->stream('historia_clinica.pdf');
@@ -32,7 +32,7 @@ class PrintController extends Controller
                 $user_medico = $user;
             }
         }
-        $pdf = PDF::loadView('PDF.printPDF.printRecetaPDF', compact('receta', 'code', 'name_sucursal', 'user_matricula', 'user_medico'));
+        $pdf = PDF::loadView('PDF.printPDF.printRecetaPDF', compact('receta', 'code', 'name_sucursal', 'user_matricula', 'user_medico'))->setPaper("letter");
         return $pdf->stream($code.'.pdf');
     }
     public function pruebaPrint()

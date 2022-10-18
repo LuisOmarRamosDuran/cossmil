@@ -21,13 +21,13 @@
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
 @section('auth_body')
-    <form action="{{ $login_url }}" method="post">
+    <form action="{{ route("inicio") }}" method="post">
         @csrf
 
         {{-- Email field --}}
         <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+            <input type="text" name="matricula" class="form-control @error('matricula') is-invalid @enderror"
+                   value="{{ old('matricula') }}" placeholder="{{ __('Matricula') }}" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            @error('email')
+            @error('matricula')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -87,18 +87,19 @@
     {{-- Password reset link --}}
     @if($password_reset_url)
         <p class="my-0">
-            <a href="{{ $password_reset_url }}">
+            <a href="{{ route("view-remember-password") }}">
                 {{ __('adminlte::adminlte.i_forgot_my_password') }}
             </a>
         </p>
     @endif
 
     {{-- Register link --}}
+    {{--
     @if($register_url)
         <p class="my-0">
             <a href="{{ $register_url }}">
                 {{ __('adminlte::adminlte.register_a_new_membership') }}
             </a>
         </p>
-    @endif
+    @endif--}}
 @stop

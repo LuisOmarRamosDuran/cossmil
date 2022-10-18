@@ -21,9 +21,11 @@
             <img src="{{ Auth::user()->adminlte_image() }}"
                  class="user-image img-circle elevation-2"
                  alt="{{ Auth::user()->nombre }}">
+                 
         @endif
         <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
             {{ Auth::user()->nombre }}
+            
         </span>
     </a>
 
@@ -38,6 +40,7 @@
                     <img src="{{ Auth::user()->adminlte_image() }}"
                          class="img-circle elevation-2"
                          alt="{{ Auth::user()->nombre }}">
+                         
                 @endif
                 <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
                     {{ Auth::user()->nombre }}
@@ -49,7 +52,14 @@
         @else
             @yield('usermenu_header')
         @endif
-
+@if(auth()->user()->id_rol == 3)
+                <div class="d-flex mx-auto mb-3">
+                    <button class="btn btn-danger btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("register_temp") }}">Registrar</a></button>
+                </div>
+                    <div class="d-flex mx-auto mb-3">
+                        <button class="btn btn-warning btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("buscar_paciente") }}">Buscar usuario</a></button>
+                    </div>
+            @endif
         {{-- Configured user menu links --}}
         @each('adminlte::partials.navbar.dropdown-item', $adminlte->menu("navbar-user"), 'item')
 
@@ -59,24 +69,24 @@
                 @yield('usermenu_body')
             </li>
         @endif
-
+            
         {{-- User menu footer --}}
         <li class="user-footer">
             @if($profile_url)
                 <a href="{{ $profile_url }}" class="btn btn-default btn-flat">
                     <i class="fa fa-fw fa-user text-lightblue"></i>
                     {{ __('adminlte::menu.profile') }}
+                    
+                    @if(auth()->user()->id_rol == 3)
+                        <div class="d-flex mx-auto mb-3">
+                            <button class="btn btn-danger btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("register_temp") }}">Registrar</a></button>
+                        </div>
+                            <div class="d-flex mx-auto mb-3">
+                                <button class="btn btn-warning btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("buscar_paciente") }}">Buscar usuario</a></button>
+                            </div>
+                    @endif
                 </a>
             @endif
-            @if(auth()->user()->id_rol == 3)
-                <div class="d-flex mx-auto mb-3">
-                    <button class="btn btn-danger btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("register_temp") }}">Registrar</a></button>
-                </div>
-                    <div class="d-flex mx-auto mb-3">
-                        <button class="btn btn-warning btn-lg btn-block"><a class="text-white text-uppercase" href="{{ route("buscar_paciente") }}">Buscar usuario</a></button>
-                    </div>
-            @endif
-
             <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif"
                href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-fw fa-power-off text-red"></i>

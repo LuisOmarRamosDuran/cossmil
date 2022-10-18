@@ -72,8 +72,15 @@
     @endif
 
 </head>
-
-<body class="@yield('classes_body')" @yield('body_data')>
+<style>
+    .FondoImage 
+    {
+        background-image: url({{ asset("ladoiz.jpg") }});
+         background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+<body class="@yield('classes_body') FondoImage" @yield('body_data')>
 
     {{-- Body Content --}}
     @yield('body')
@@ -107,3 +114,4 @@
 </body>
 
 </html>
+
