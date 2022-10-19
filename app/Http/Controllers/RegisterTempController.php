@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -84,8 +85,8 @@ class RegisterTempController extends Controller
             'tipo_sangre'           => $request->tipo_sangre,
             'password'              => Hash::make($request->ci),
             'matricula'             => $fecha_a . $feche_mes . $feche_dia . $ApellidoPat . $ApellidoMat . $Name ,
-
         ]);
+        Log::info('El usuario'. $user->id .' ha creado un usuario con el id: '. $user->id);
         return redirect()->route("home");
     }
 

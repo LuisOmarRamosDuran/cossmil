@@ -29,12 +29,10 @@ class PacienteController extends Controller
 
     public function historia_user()
     {
-        $id_user = auth()->user();
-        dd($id_user);
-        $name_sucursal = ($evolucion->sucursales()->get())[0]->nombre;
-        $code = "HC N°".str_pad($evolucion->id,3, "0", STR_PAD_LEFT);
+        $user_evoluciones = (auth()->user())->evoluciones;
+        $data = evolucion::all();
 
-        return view('adminlte.paciente.historia_clinica', compact('evolucion', 'name_sucursal', 'code'));
+        return view('adminlte.paciente.index', compact('user_evoluciones'));
     }
 
     public function enviarEmail()

@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -274,21 +273,15 @@ return [
         [
             'text'       => 'LABORATORIOS',
             'icon_color' => 'yellow',
-            'url'        => '#',
-            'active' => ['laboratorio', 'laboratorio', 'laboratorio*', 'regex:@^laboratorio/[0-9]+$@']
+            'url'        => '/laboratorios',
+            'active' => ['laboratorio','laboratorios', 'laboratorio', 'laboratorio*', 'regex:@^laboratorio/[0-9]+$@']
         ],
         [
             'text'       => 'RECETAS',
             'icon_color' => 'yellow',
-            'url'        => '#',
+            'url'        => '/recetas',
             'active' => ['receta', 'receta', 'receta*', 'regex:@^receta/[0-9]+$@']
         ],
-        [
-            'text'       => 'Buscar paciente',
-            'icon_color' => 'yellow',
-            'url'        => '/buscar_paciente',
-        ],
-
     ],
 
     /*

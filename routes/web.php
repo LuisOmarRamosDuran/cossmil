@@ -63,11 +63,13 @@ Route::group(['middleware' => 'medico'], function () {
     Route::post('/update_historia_clinica/update',      [\App\Http\Controllers\MedicoController::class, 'update_historia_clinica'])->name('update_historia_clinica.update');
     //Recetas
     Route::get('/receta/{id_user}',                     [\App\Http\Controllers\MedicoController::class, 'index_receta'])->name('index_receta');
+    Route::get('/recetas',                              [\App\Http\Controllers\MedicoController::class, 'index_recetas'])->name('index_recetas');
     Route::get('/crear/receta/{id_user}',               [\App\Http\Controllers\MedicoController::class, 'index_crear_receta'])->name('crear_receta');
     Route::post('/crear/receta_nueva',                  [\App\Http\Controllers\MedicoController::class, 'crear_receta'])->name('crear_receta_nueva');
     Route ::get('/receta/ver/{id_receta}',              [\App\Http\Controllers\MedicoController::class, 'ver_receta'])->name('ver_receta');
     //Laboratorios
     Route::get('/laboratorio/{id_user}',                [\App\Http\Controllers\MedicoController::class, 'index_laboratorio'])->name('index_laboratorio');
+    Route::get('/laboratorios',                         [\App\Http\Controllers\MedicoController::class, 'index_lab'])->name('index_laboratorios');
     Route::get('/crear/laboratorio/{id_user}',          [\App\Http\Controllers\MedicoController::class, 'index_crear_laboratorio'])->name('crear_laboratorio');
     Route::post('/crear/laboratorio_nuevo',             [\App\Http\Controllers\MedicoController::class, 'crear_laboratorio'])->name('crear_laboratorio_nueva');
     Route::post('/subir_archivos',                      [\App\Http\Controllers\MedicoController::class, 'subir_archivos'])->name('subir_archivos');

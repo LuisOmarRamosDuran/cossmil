@@ -25,12 +25,12 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-white">Casa</a>
+                        <a href="{{ url('/home') }}" class="text-lg text-gray-700 hover:black"><h3>Casa</h3></a>
                         @if(auth()->user()->id_rol == 3)
-                            <a href="{{ route("register_temp") }}" class="text-sm text-gray-700 dark:text-white">Registrar</a>
+                            <a href="{{ route("register_temp") }}" class="text-lg text-gray-700 hover:black"><h3>Registrar</h3></a>
                         @endif
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-white">Iniciar Sesion</a>
+                        <a href="{{ route('login') }}" class="text-lg text-gray-700 hover:black"><h3>Iniciar Sesion</h3></a>
 
 {{--                        @if (Route::has('register'))--}}
 {{--                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registro</a>--}}
@@ -38,7 +38,7 @@
                     @endauth
                 </div>
             @endif
-            <img class="sm:rounded-lg" width="100%" height="auto" src="{{ asset("fondo.jpg") }}"/>
+            <img class="sm:rounded-lg" width="100%" style="background-size: cover;" height="auto" src="{{ asset("fondo.jpg") }}"/>
             </div>
         </div>
     </body>
