@@ -54,12 +54,12 @@
                     <td>{{ $especialidad->nombre }}</td>
                 @endforeach
                 @foreach($data->users as $medico)
-                    @if($medico->id_rol == 2)
+                    @if($medico->id_rol == 2 || $medico->id_rol == 3)
                         <td>{{ $medico->nombre }}</td>
                     @endif
                 @endforeach
                 <td>
-                    @foreach($data->laboratorios as $receta)
+                    @forelse($data->laboratorios as $receta)
                         <ul>
                             <li style="list-style: none;">{{ "RC-" . $receta->tipo . "," }}</li>
                         </ul>
@@ -67,7 +67,11 @@
                         <a href="{{ asset($receta->documento->url) }}" class="href">
                             <button type="button" class="btn btn-success">Visualizar</button>
                         </a>
-                    @endforeach
+                    @empty
+                            
+                        <h6>No tiene laboratorio</h6>
+                    @endforelse
+                
                 </td>
                 <td>
                     <div class="d-flex justify-content-center">

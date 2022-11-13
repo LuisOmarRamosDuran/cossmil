@@ -225,19 +225,9 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+    
         [
             'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
             'topnav_right' => true,
         ],
         [

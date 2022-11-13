@@ -59,7 +59,7 @@
                     <td>{{ $especialidad->nombre }}</td>
                 @endforeach
                 @foreach($data->users as $medico)
-                    @if($medico->id_rol == 2)
+                    @if($medico->id_rol == 2 || $medico->id_rol)
                         <td>{{ $medico->nombre }}</td>
                     @endif
                 @endforeach

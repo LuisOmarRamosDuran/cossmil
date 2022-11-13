@@ -54,12 +54,12 @@
                     <td>{{ $especialidad->nombre }}</td>
                 @endforeach
                 @foreach($data->users as $medico)
-                    @if($medico->id_rol == 2)
+                    @if($medico->id_rol == 2 || $medico->id_rol == 3)
                         <td>{{ $medico->nombre }}</td>
                     @endif
                 @endforeach
                 <td>
-                    @foreach($data->recetas as $receta)
+                    @forelse($data->recetas as $receta)
                         <ul>
                             <li style="list-style: none;">{{ "RC-" . $receta->codigoReceta . "," }}</li>
                         </ul>
@@ -67,7 +67,10 @@
                         <a href="{{ route('ver_receta', ['id_receta' => $receta->id]) }}" class="href">
                             <button type="button" class="btn btn-success">Visualizar</button>
                         </a>
-                    @endforeach
+                    @empty
+                            
+                        <h5>No tiene recetas</h5>
+                    @endforelse
                 </td>
                 <td>
                     <div class="d-flex justify-content-center">

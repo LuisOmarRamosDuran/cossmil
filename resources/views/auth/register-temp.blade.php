@@ -24,6 +24,77 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="row mb-3">
+                                <label for="apellido_paterno" class="col-md-4 col-form-label text-md-end">{{ __('Apellido paterno') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="apellido_paterno" type="text" class="form-control @error('apellido_paterno') is-invalid @enderror" name="apellido_paterno" value="{{ old('apellido_paterno') }}" required autocomplete="apellido_paterno">
+
+                                    @error('apellido_paterno')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                             <div class="row mb-3">
+                                <label for="apellido_materno" class="col-md-4 col-form-label text-md-end">{{ __('Apellido materno') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="apellido_materno" type="text" class="form-control @error('apellido_materno') is-invalid @enderror" name="apellido_materno" required autocomplete="new-apellido_materno">
+
+                                    @error('apellido_materno')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                             <div class="row mb-3">
+                                <label for="apellido_esposo" class="col-md-4 col-form-label text-md-end">{{ __('Apellido cónyuge') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="apellido_esposo" type="text" class="form-control @error('apellido_esposo') is-invalid @enderror" name="apellido_esposo" required autocomplete="new-apellido_esposo">
+
+                                    @error('apellido_esposo')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="ci" class="col-md-4 col-form-label text-md-end">{{ __('CI') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="ci" type="text" class="form-control @error('ci') is-invalid @enderror" name="ci" autocomplete="new-ci">
+
+                                    @error('ci')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-end">{{ __('Fecha de nacimiento') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="fecha_nacimiento" type="date" class="form-control @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento" required autocomplete="new-fecha_nacimiento" min="1900-01-01" max="2200-12-30">
+
+                                    @error('fecha_nacimiento')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="row mb-3">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
@@ -31,6 +102,20 @@
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                             <div class="row mb-3">
+                                <label for="carnet_beneficiario" class="col-md-4 col-form-label text-md-end">{{ __('Carnet beneficiario') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="carnet_beneficiario" type="text" class="form-control @error('carnet_beneficiario') is-invalid @enderror" name="carnet_beneficiario" autocomplete="new-carnet_beneficiario">
+
+                                    @error('carnet_beneficiario')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -54,97 +139,12 @@
 
 
                             <div class="row mb-3">
-                                <label for="apellido_paterno" class="col-md-4 col-form-label text-md-end">{{ __('Apellido paterno') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="apellido_paterno" type="text" class="form-control @error('apellido_paterno') is-invalid @enderror" name="apellido_paterno" value="{{ old('apellido_paterno') }}" required autocomplete="apellido_paterno">
-
-                                    @error('apellido_paterno')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="apellido_materno" class="col-md-4 col-form-label text-md-end">{{ __('Apellido materno') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="apellido_materno" type="text" class="form-control @error('apellido_materno') is-invalid @enderror" name="apellido_materno" required autocomplete="new-apellido_materno">
-
-                                    @error('apellido_materno')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="apellido_esposo" class="col-md-4 col-form-label text-md-end">{{ __('Apellido cónyuge') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="apellido_esposo" type="text" class="form-control @error('apellido_esposo') is-invalid @enderror" name="apellido_esposo" required autocomplete="new-apellido_esposo">
-
-                                    @error('apellido_esposo')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-                            <div class="row mb-3">
-                                <label for="carnet_beneficiario" class="col-md-4 col-form-label text-md-end">{{ __('Carnet beneficiario') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="carnet_beneficiario" type="text" class="form-control @error('carnet_beneficiario') is-invalid @enderror" name="carnet_beneficiario" autocomplete="new-carnet_beneficiario">
-
-                                    @error('carnet_beneficiario')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="ci" class="col-md-4 col-form-label text-md-end">{{ __('CI') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="ci" type="text" class="form-control @error('ci') is-invalid @enderror" name="ci" autocomplete="new-ci">
-
-                                    @error('ci')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
                                 <label for="id_grado" class="col-md-4 col-form-label text-md-end">{{ __('Grado') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="id_grado" type="text" class="form-control @error('id_grado') is-invalid @enderror" name="id_grado" autocomplete="new-id_grado">
 
                                     @error('id_grado')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-end">{{ __('Fecha de nacimiento') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="fecha_nacimiento" type="date" class="form-control @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento" required autocomplete="new-fecha_nacimiento" min="1900-01-01" max="2200-12-30">
-
-                                    @error('fecha_nacimiento')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -224,8 +224,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">

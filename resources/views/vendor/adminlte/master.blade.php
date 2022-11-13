@@ -76,7 +76,7 @@
     .FondoImage 
     {
         background-image: url({{ asset("ladoiz.jpg") }});
-         background-size: cover;
+        background-image: ;
         background-repeat: no-repeat;
     }
 </style>

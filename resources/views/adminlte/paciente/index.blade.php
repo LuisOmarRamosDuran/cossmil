@@ -29,7 +29,7 @@
                 <tr>
                     <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y')}}</td>
                     @foreach($data->sucursales as $sucursal)
-                        <td>{{ $sucursal->iniciales }}</td>
+                        <td>{{ $sucursal->nombre }}</td>
                     @endforeach
 {{--                    @if($data->user->tipo_user == 2)--}}
 {{--                        <td>{{ $data->user->nombre }}</td>--}}
@@ -38,7 +38,7 @@
                         <td>{{ $especialidad->nombre }}</td>
                     @endforeach
                     @foreach($data->users as $medico)
-                        @if($medico->id_rol == 2)
+                        @if($medico->id_rol == 2 || $medico->id_rol == 3)
                             <td>{{ $medico->nombre }}</td>
                         @endif
                     @endforeach
