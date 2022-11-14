@@ -27,7 +27,7 @@
         <tbody>
             @foreach ($user_evoluciones as $data)
                 <tr>
-                    <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y')}}</td>
+                    <td>{{ $data->created_at }}</td>
                     @foreach($data->sucursales as $sucursal)
                         <td>{{ $sucursal->nombre }}</td>
                     @endforeach
@@ -38,8 +38,20 @@
                         <td>{{ $especialidad->nombre }}</td>
                     @endforeach
                     @foreach($data->users as $medico)
-                        @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                            <td>{{ $medico->nombre }}</td>
+                        @if($medico->id_rol == 2)
+                            @if($medico->id_rol == 2 || $medico->id_rol == 3)
+                                    <td>
+                                        {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
+                                    </td>
+                            @endif
+                        @else
+                            @if($loop->index == 0 )
+                                @if($medico->id_rol == 2 || $medico->id_rol == 3)
+                                    <td>
+                                        {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
+                                    </td>
+                                @endif
+                            @endif
                         @endif
                     @endforeach
                     <td>{{ $data->diagnostico }}</td>

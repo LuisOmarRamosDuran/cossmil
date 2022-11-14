@@ -10,7 +10,14 @@
 
 @section('content_header')
     <h1 class="text-center text-uppercase">Historial Cl&iacute;nico digital Medico</h1>
-    <h1 class="text-info text-md">Recetas del paciente {{ $user_matricula->nombre }}</h1>
+    @if(Auth::user()->id_rol == 3 || Auth::user()->id_rol == 2)
+        <h1 class="text-info text-md">Recetas registrados</h1>
+    @endif
+    @if(Auth::user()->id_rol == 1)
+        <h1 class="text-info text-md">Recetas del paciente 
+            {{ $user_matricula->nombre . " " . $user_matricula->ap_paterno. " " . $user_matricula->ap_materno}}
+        </h1>
+    @endif
 @stop
 
 @section('content')
@@ -32,10 +39,10 @@
             <th>Fecha</th>
             <th>Sucursal</th>
             <th>Especialidad</th>
-            <th>M&eacute;dico</th>
+            <th>M&eacute;dico - Paciente</th>
             <th>Receta</th>
-            <th>Acci&oacute;n</th>
-            @if(Auth::user()->id_rol == 3)
+            @if(Auth::user()->id_rol == 2 || Auth::user()->id_rol == 3)
+                <th>Acci&oacute;n</th>
                 <th>Eliminar</th>
             @endif
         </tr>
@@ -43,9 +50,9 @@
         <tbody>
         @foreach ($user_evoluciones as $data)
             <tr>
-                <td>{{ \Carbon\Carbon::parse($data->created_at)->format('d/m/Y')}}</td>
+                <td>{{ $data->created_at }}</td>
                 @foreach($data->sucursales as $sucursal)
-                    <td>{{ $sucursal->iniciales }}</td>
+                    <td>{{ $sucursal->nombre }}</td>
                 @endforeach
                 {{--                    @if($data->user->tipo_user == 2)--}}
                 {{--                        <td>{{ $data->user->nombre }}</td>--}}
@@ -53,10 +60,29 @@
                 @foreach($data->especialidades as $especialidad)
                     <td>{{ $especialidad->nombre }}</td>
                 @endforeach
-                @foreach($data->users as $medico)
-                    @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                        <td>{{ $medico->nombre }}</td>
+                {{--@foreach($data->users as $medico)
+                   @if($medico->id_rol == 2)
+                        @if($medico->id_rol == 2 || $medico->id_rol == 3)
+                                <td>
+                                    {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
+                                </td>
+                        @endif
+                    @else
+                        @if($loop->index == 0 )
+                            @if($medico->id_rol == 2 || $medico->id_rol == 3)
+                                <td>
+                                    {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
+                                </td>
+                            @endif
+                        @endif
                     @endif
+                
+                    @if($medico->id_rol == 2 || $medico->id_rol == 3 || $medico->id_rol == 1)
+                        <td>
+                            {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno. " - " . $medico[($loop->index)+1]->nombre}}
+                        </td>
+                    @endif
+                --}}
                 @endforeach
                 <td>
                     @forelse($data->recetas as $receta)
@@ -72,6 +98,7 @@
                         <h5>No tiene recetas</h5>
                     @endforelse
                 </td>
+                @if(Auth::user()->id_rol == 2 || Auth::user()->id_rol == 3)
                 <td>
                     <div class="d-flex justify-content-center">
 
@@ -83,14 +110,14 @@
                         </button>
                     </div>
                 </td>
-                @if(Auth::user()->id_rol == 3)
-                    <td>
-                        <form action="{{ route('delete.historia', ['evolucion' => $data]) }}" method="post">
-                            @csrf
-                            @method('POST')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-                    </td>
+                
+                <td>
+                    <form action="{{ route('delete.historia', ['evolucion' => $data]) }}" method="post">
+                        @csrf
+                        @method('POST')
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
                 @endif
             </tr>
         @endforeach
@@ -102,18 +129,13 @@
             <th>Especialidad</th>
             <th>M&eacute;dico</th>
             <th>Receta</th>
-            <th>Acci&oacute;n</th>
-            @if(Auth::user()->id_rol == 3)
+            @if(Auth::user()->id_rol == 2 || Auth::user()->id_rol == 3)
+                <th>Acci&oacute;n</th>
                 <th>Eliminar</th>
             @endif
         </tr>
         </tfoot>
     </table>
-
-    <div class="d-flex justify-content-center">
-        <button class="btn btn-danger text-white"><a href="{{ route("index_receta", ["id_user" => $user_matricula->id]) }}" target="_blank" class="text-white">Recetas</a></button>
-        <button class="btn btn-danger text-white"><a href="#" target="_blank" class="text-white">Laboratorios</a></button>
-    </div>
 @stop
 
 @section('css')

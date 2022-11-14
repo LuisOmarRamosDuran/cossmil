@@ -32,6 +32,7 @@ class MedicoController extends Controller
             'url' => $url,
             'id_informe' => 16,
         ]);
+        Cache::forget('documento' . auth()->user()->id);
         Cache::put('documento' . auth()->user()->id, $documento);
     }
 
@@ -51,7 +52,7 @@ class MedicoController extends Controller
                 'id_evolution' => $evolucion->id,
                 'id_documento'  => Cache::get("documento".auth()->user()->id)->id,
             ]);
-
+            Cache::forget('documento' . auth()->user()->id);
             session()->flash('NotifYes', 'Laboratorio creado correctamente');
             return redirect()->route('index_laboratorio',$evolucion->user_id);
         }

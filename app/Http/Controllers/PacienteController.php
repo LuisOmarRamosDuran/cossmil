@@ -14,6 +14,7 @@ class PacienteController extends Controller
     public function index()
     {
         $user_evoluciones = (auth()->user())->evoluciones;
+    
         $data = evolucion::all();
 
         return view('adminlte.paciente.index', compact('user_evoluciones'));
@@ -30,6 +31,7 @@ class PacienteController extends Controller
     public function historia_user()
     {
         $user_evoluciones = (auth()->user())->evoluciones;
+    
         $data = evolucion::all();
 
         return view('adminlte.paciente.index', compact('user_evoluciones'));
