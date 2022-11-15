@@ -19,7 +19,7 @@
                 <th>Fecha</th>
                 <th>Sucursal</th>
                 <th>Especialidad</th>
-                <th>M&eacute;dico</th>
+                <th>Paciente - M&eacute;dico</th>
                 <th>Diagn&oacute;stico</th>
                 <th>Acci&oacute;n</th>
             </tr>
@@ -37,23 +37,11 @@
                     @foreach($data->especialidades as $especialidad)
                         <td>{{ $especialidad->nombre }}</td>
                     @endforeach
-                    @foreach($data->users as $medico)
-                        @if($medico->id_rol == 2)
-                            @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                                    <td>
-                                        {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
-                                    </td>
-                            @endif
-                        @else
-                            @if($loop->index == 0 )
-                                @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                                    <td>
-                                        {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
-                                    </td>
-                                @endif
-                            @endif
-                        @endif
+                <td>
+                    @foreach($data->users as $user)
+                        {{ $user->nombre." ". $user->ap_paterno." ". $user->ap_materno}} - 
                     @endforeach
+                </td>
                     <td>{{ $data->diagnostico }}</td>
                     <td>
                         <a href="{{ route('index.historia', ['evolucion' => $data]) }}" class="href">
@@ -68,7 +56,7 @@
                 <th>Fecha</th>
                 <th>Sucursal</th>
                 <th>Especialidad</th>
-                <th>M&eacute;dico</th>
+                <th>Paciente - M&eacute;dico</th>
                 <th>Diagn&oacute;stico</th>
                 <th>Acci&oacute;n</th>
             </tr>

@@ -39,7 +39,7 @@
             <th>Fecha</th>
             <th>Sucursal</th>
             <th>Especialidad</th>
-            <th>M&eacute;dico - Paciente</th>
+            <th>Paciente - M&eacute;dico - Paciente</th>
             <th>Receta</th>
             @if(Auth::user()->id_rol == 2 || Auth::user()->id_rol == 3)
                 <th>Acci&oacute;n</th>
@@ -60,30 +60,11 @@
                 @foreach($data->especialidades as $especialidad)
                     <td>{{ $especialidad->nombre }}</td>
                 @endforeach
-                {{--@foreach($data->users as $medico)
-                   @if($medico->id_rol == 2)
-                        @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                                <td>
-                                    {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
-                                </td>
-                        @endif
-                    @else
-                        @if($loop->index == 0 )
-                            @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                                <td>
-                                    {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
-                                </td>
-                            @endif
-                        @endif
-                    @endif
-                
-                    @if($medico->id_rol == 2 || $medico->id_rol == 3 || $medico->id_rol == 1)
-                        <td>
-                            {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno. " - " . $medico[($loop->index)+1]->nombre}}
-                        </td>
-                    @endif
-                --}}
-                @endforeach
+                <td>
+                    @foreach($data->users as $user)
+                        {{ $user->nombre." ". $user->ap_paterno." ". $user->ap_materno}} - 
+                    @endforeach
+                </td>
                 <td>
                     @forelse($data->recetas as $receta)
                         <ul>
@@ -127,7 +108,7 @@
             <th>Fecha</th>
             <th>Sucursal</th>
             <th>Especialidad</th>
-            <th>M&eacute;dico</th>
+            <th>Paciente - M&eacute;dico</th>
             <th>Receta</th>
             @if(Auth::user()->id_rol == 2 || Auth::user()->id_rol == 3)
                 <th>Acci&oacute;n</th>

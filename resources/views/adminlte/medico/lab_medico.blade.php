@@ -40,7 +40,7 @@
             <th>Fecha</th>
             <th>Sucursal</th>
             <th>Especialidad</th>
-            <th>M&eacute;dico</th>
+            <th>Paciente - M&eacute;dico</th>
             <th>Laboratorios</th>
             @if(Auth::user()->id_rol == 3 || Auth::user()->id_rol == 3)
                 <th>Acci&oacute;n</th>
@@ -55,29 +55,14 @@
                 @foreach($data->sucursales as $sucursal)
                     <td>{{ $sucursal->nombre }}</td>
                 @endforeach
-                {{--                    @if($data->user->tipo_user == 2)--}}
-                {{--                        <td>{{ $data->user->nombre }}</td>--}}
-                {{--                    @endif--}}
                 @foreach($data->especialidades as $especialidad)
                     <td>{{ $especialidad->nombre }}</td>
                 @endforeach
-                @foreach($data->users as $medico)
-                   @if($medico->id_rol == 2)
-                            @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                                    <td>
-                                        {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
-                                    </td>
-                            @endif
-                    @else
-                        @if($loop->index == 0 )
-                            @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                                <td>
-                                    {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
-                                </td>
-                            @endif
-                        @endif
-                    @endif
-                @endforeach
+                <td>
+                    @foreach($data->users as $user)
+                        {{ $user->nombre." ". $user->ap_paterno." ". $user->ap_materno}} - 
+                    @endforeach
+                </td>
                 <td>
                     @forelse($data->laboratorios as $receta)
                         <ul>
@@ -95,11 +80,7 @@
                 </td>
                 @if(Auth::user()->id_rol == 2 || Auth::user()->id_rol == 3)
                     <td>
-                        <div class="d-flex justify-content-center">
-
-                            {{--                        <a href="{{ route('update_historia_clinica', ['evolucion' => $data]) }}" class="href">--}}
-                            {{--                            <button type="button" class="btn btn-warning">Modificar</button>--}}
-                            {{--                        </a>--}}
+                        <div class="d-flex justify-content-center">                        
                             <button class="btn btn-warning">
                                 <a href="{{ route('crear_laboratorio', ["id_user" => $data]) }}" class="text-dark">Añadir Laboratorio</a>
                             </button>
@@ -117,17 +98,17 @@
         @endforeach
         </tbody>
         <tfoot>
-        <tr>
-            <th>Fecha</th>
-            <th>Sucursal</th>
-            <th>Especialidad</th>
-            <th>M&eacute;dico</th>
-            <th>Laboratorios</th>
-            @if(Auth::user()->id_rol == 3 || Auth::user()->id_rol == 3)
-                <th>Acci&oacute;n</th>
-                <th>Eliminar</th>
-            @endif
-        </tr>
+            <tr>
+                <th>Fecha</th>
+                <th>Sucursal</th>
+                <th>Especialidad</th>
+                <th>Paciente - M&eacute;dico</th>
+                <th>Laboratorios</th>
+                @if(Auth::user()->id_rol == 3 || Auth::user()->id_rol == 3)
+                    <th>Acci&oacute;n</th>
+                    <th>Eliminar</th>
+                @endif
+            </tr>
         </tfoot>
     </table>
 
@@ -145,7 +126,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
 
     <script>
-        $("#historia_clinica").DataTable({
+       $("#historia_clinica").DataTable({
             responsive : true,
             autoWidth: false,
             "order": [[ 4, "desc" ]],

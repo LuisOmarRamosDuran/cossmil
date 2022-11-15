@@ -179,13 +179,14 @@ class MedicoController extends Controller
         $code = "RC-".str_pad($receta->id,3, "0", STR_PAD_LEFT);
         $name_sucursal = ($receta->evolucion->sucursales()->get())[0]->nombre;
         foreach ($receta->evolucion->users as $user) {
+
             if ($user->id_rol == 1) {
                 $user_matricula = $user;
             }
-            else if ($user->id_rol == 2) {
+            if ($user->id_rol == 2) {
                 $user_medico = $user;
             }
-            else if ($user->id_rol == 3)
+            if ($user->id_rol == 3)
             {
                 $user_medico = $user;
             }
@@ -237,6 +238,10 @@ class MedicoController extends Controller
             {
                 $users_evolucion_medico = $user->nombre . " " . $user->ap_paterno . " " . $user->ap_materno;
             }
+            else if ($user->id_rol == 3)
+            {
+                $users_evolucion_medico = $user->nombre . " " . $user->ap_paterno . " " . $user->ap_materno;
+            }   
         }
 //        dd($users_evolucion_paciente." ".$users_evolucion_medico);
 //        dd($evolucion->sucursales()->first()->id);

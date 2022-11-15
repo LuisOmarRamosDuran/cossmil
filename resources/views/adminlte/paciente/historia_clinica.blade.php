@@ -49,13 +49,18 @@
                      <br>
                      <span class="text-uppercase">Fecha y hora:</span>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5">  
                     <span class="text-uppercase">{{ $name_sucursal }}</span>
+                    
                     <br>
-                    <span class="text-uppercase">{{ auth()->user()->matricula }}</span>
-                    <br>
-                    <span class="text-uppercase">{{ auth()->user()->matricula }}</span>
-                    <br>
+                    @foreach($evolucion->users()->get() as $user)
+                        @if($user->id_rol == 1)
+                            <span class="text-uppercase">{{ $user->matricula }}</span>
+                            <br>
+                            <span class="text-uppercase">{{ $user->matricula }}</span>
+                            <br>
+                        @endif
+                    @endforeach                
                     <span class="text-uppercase">{{ \Carbon\Carbon::parse($evolucion->created_at)->format('d/m/Y h:m') }}</span>
                 </div>
             </div>

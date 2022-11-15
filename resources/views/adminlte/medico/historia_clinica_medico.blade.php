@@ -39,7 +39,7 @@
             <th>Fecha</th>
             <th>Sucursal</th>
             <th>Especialidad</th>
-            <th>M&eacute;dico</th>
+            <th>Paciente - M&eacute;dico</th>
             <th>Diagn&oacute;stico</th>
             <th>Acci&oacute;n</th>
             @if(Auth::user()->id_rol == 3)
@@ -61,23 +61,11 @@
                     <td>{{ $especialidad->nombre }}</td>
                 @endforeach
                 
-                    @foreach($data->users as $medico)
-                         @if($medico->id_rol == 2)
-                        @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                                <td>
-                                    {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
-                                </td>
-                        @endif
-                    @else
-                        @if($loop->index == 0 )
-                            @if($medico->id_rol == 2 || $medico->id_rol == 3)
-                                <td>
-                                    {{ $medico->nombre . " " . $medico->ap_paterno. " " . $medico->ap_materno}}
-                                </td>
-                            @endif
-                        @endif
-                    @endif
+                <td>
+                    @foreach($data->users as $user)
+                        {{ $user->nombre." ". $user->ap_paterno." ". $user->ap_materno}} - 
                     @endforeach
+                </td>
                 
 
                 <td>{{ $data->diagnostico }}</td>
@@ -93,17 +81,7 @@
                                 </a>
                             </div>                        
                         </div>    
-                        <div class="row">
-                            <div class="col">
-                                <a href="{{ route('index.historia', ['evolucion' => $data]) }}" class="href">
-                                    <button type="button" class="btn btn-success">Ver recetas</button>
-                                </a>
-                                <a href="{{ route('update_historia_clinica', ['evolucion' => $data]) }}" class="href">
-                                    <button type="button" class="btn btn-warning">Ver laboratorios</button>
-                                </a>
-                            </div>
-                        </div>                                
-                
+                    
                     </div>
                 </td>
                 @if(Auth::user()->id_rol == 3)
@@ -123,7 +101,7 @@
             <th>Fecha</th>
             <th>Sucursal</th>
             <th>Especialidad</th>
-            <th>M&eacute;dico</th>
+            <th>Paciente - M&eacute;dico</th>
             <th>Diagn&oacute;stico</th>
             <th>Acci&oacute;n</th>
             @if(Auth::user()->id_rol == 3)
