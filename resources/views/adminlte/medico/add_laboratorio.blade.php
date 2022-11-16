@@ -81,7 +81,7 @@
         {{--                </label>--}}
         {{--            </div>--}}
         {{--        </div>--}}
-
+        <input type="hidden" name="evolucion_id" value="{{$evolucion_id}}" />
         <button type="submit" class="btn btn-success btn-block">Añadir</button>
     </form>
     <form action="{{ route("subir_archivos") }}"

@@ -73,6 +73,7 @@
 {{--                <textarea class="form-control" id="exampleFormControlTextarea1" name="textConducta" rows="4"></textarea>--}}
 {{--            </div>--}}
         </div>
+        <input type="hidden" name="evolucion_id" value="{{ $evolucion }}" />
         {{--        <div class="form-group">--}}
         {{--            <div class="form-check">--}}
         {{--                <input class="form-check-input" type="checkbox" id="gridCheck">--}}

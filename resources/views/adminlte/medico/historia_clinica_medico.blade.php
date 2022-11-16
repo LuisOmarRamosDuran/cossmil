@@ -10,7 +10,7 @@
 
 @section('content_header')
     <h1 class="text-center text-uppercase">Historial Cl&iacute;nico digital Medico</h1>
-    <h1 class="text-info text-md">Historia clínica del paciente 
+    <h1 class="text-info text-md">Historia clínica del paciente
         {{ $user_matricula->nombre . " " . $user_matricula->ap_paterno. " " . $user_matricula->ap_materno}}
     </h1>
     <div class="d-flex justify-content-end">
@@ -60,13 +60,13 @@
                 @foreach($data->especialidades as $especialidad)
                     <td>{{ $especialidad->nombre }}</td>
                 @endforeach
-                
+
                 <td>
                     @foreach($data->users as $user)
-                        {{ $user->nombre." ". $user->ap_paterno." ". $user->ap_materno}} - 
+                        {{ $user->nombre." ". $user->ap_paterno." ". $user->ap_materno}} -
                     @endforeach
                 </td>
-                
+
 
                 <td>{{ $data->diagnostico }}</td>
                 <td>
@@ -79,9 +79,9 @@
                                 <a href="{{ route('update_historia_clinica', ['evolucion' => $data]) }}" class="href">
                                     <button type="button" class="btn btn-warning">Modificar</button>
                                 </a>
-                            </div>                        
-                        </div>    
-                    
+                            </div>
+                        </div>
+
                     </div>
                 </td>
                 @if(Auth::user()->id_rol == 3)
@@ -110,7 +110,12 @@
         </tr>
         </tfoot>
     </table>
-
+    @if(Route::currentRouteName() == 'buscar_paciente.envio')
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-danger text-white"><a href="{{ route("index_receta", ["id_user" => $user_matricula->id]) }}" target="_blank" class="text-white">Recetas del usuario</a></button>
+            <button class="btn btn-danger text-white"><a href="{{ route("index_laboratorio", ["id_user" => $user_matricula->id]) }}" target="_blank" class="text-white">Laboratorios del usuario</a></button>
+        </div>
+    @endif
 @stop
 
 @section('css')

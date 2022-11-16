@@ -225,7 +225,7 @@ return [
 
     'menu' => [
         // Navbar items:
-    
+
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -253,7 +253,7 @@ return [
 //            'icon' => 'fas fa-fw fa-lock',
 //        ],
 
-        ['header' => 'SERVICIOS'],
+        ['header' => 'SERVICIOS DEL USUARIO'],
         [
             'text'       => 'HISTORIA CLINICA',
             'icon_color' => 'yellow',

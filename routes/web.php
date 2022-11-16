@@ -31,6 +31,9 @@ Route::post('/cambiar-contrasena-update2', [App\Http\Controllers\RegisterTempCon
 Route::get('/view-remember-password', function () {
     return view('adminlte.auth.index-password-change');
 })->name('view-remember-password');
+Route::get('/cambiar', function () {
+    return \Illuminate\Support\Facades\Artisan::call('storage:link');
+})->name('cambiar');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/prueba', [App\Http\Controllers\PrintController::class, 'pruebaPrint'])->name('prueba');

@@ -38,7 +38,6 @@ class MedicoController extends Controller
 
     public function crear_laboratorio(Request $request)
     {
-        
         $evolucion = Cache::get('evolucion'.auth()->user()->id);
 
         $documento_up = Cache::has("documento".auth()->user()->id) ? Cache::get("documento".auth()->user()->id)->id : "";
@@ -49,7 +48,7 @@ class MedicoController extends Controller
                 'tipo' => $request->inputTypeLab,
                 'id_responsable' => auth()->user()->id,
                 'user_id' => $evolucion->user_id,
-                'id_evolution' => $evolucion->id,
+                'id_evolution' => $request->evolucion_id,
                 'id_documento'  => Cache::get("documento".auth()->user()->id)->id,
             ]);
             Cache::forget('documento' . auth()->user()->id);
@@ -61,12 +60,12 @@ class MedicoController extends Controller
             return redirect()->route('index_laboratorio',$evolucion->user_id);
         }
 
-        
+
     }
 
     public function index_crear_laboratorio($id_user)
     {
-    
+
         $evolucion = evolucion::find($id_user);
         $laboratorio_count = laboratorio::all()->count();
         if(!Cache::has("evolucion" . auth()->user()->id))
@@ -77,10 +76,18 @@ class MedicoController extends Controller
             if ($user->id_rol == 1) {
                 $user_matricula = $user;
             }
+            if ($user->id_rol == 2) {
+                $user_matricula = $user;
+            }
+            if ($user->id_rol == 3) {
+                $user_matricula = $user;
+            }
+
         }
+        $evolucion_id = $evolucion->id;
         $sucursales = sucursal::all();
         $especialidades = especialidad::all();
-        return view("adminlte.medico.add_laboratorio", compact('evolucion', 'laboratorio_count', 'user_matricula', 'sucursales', 'especialidades'));
+        return view("adminlte.medico.add_laboratorio", compact('evolucion', 'laboratorio_count', 'user_matricula', 'sucursales', 'especialidades', 'evolucion_id'));
     }
 
     public function index_lab()
@@ -90,12 +97,13 @@ class MedicoController extends Controller
 
         $user_laboratorio = $user_matricula->laboratorios;
 
-        
+
 
         return view('adminlte.medico.lab_medico', compact('user_laboratorio', 'user_evoluciones', 'user_matricula'));
     }
     public function index_laboratorio($id_user)
     {
+
         $user_matricula = User::find($id_user);
         $user_evoluciones = $user_matricula->evoluciones;
 
@@ -120,12 +128,13 @@ class MedicoController extends Controller
         $user_evoluciones = $user_matricula->evoluciones;
 
         $user_recetas = $user_matricula->recetas;
-        
+
 
         return view('adminlte.medico.recetas_medico', compact('user_evoluciones', 'user_matricula', 'user_recetas'));
     }
     public function index_receta($id_user)
     {
+
         $user_matricula = User::find($id_user);
 
         $user_evoluciones = $user_matricula->evoluciones;
@@ -137,22 +146,31 @@ class MedicoController extends Controller
 
     public function index_crear_receta($id_user)
     {
+
         $evolucion_find = evolucion::find($id_user);
         Cache::forget("evolucion".auth()->user()->id);
         if(!Cache::has("evolucion" . auth()->user()->id))
         {
             Cache::put('evolucion' . auth()->user()->id, $evolucion_find);
         }
+
         foreach ($evolucion_find->users as $user) {
             if ($user->id_rol == 1) {
                 $user_matricula = $user;
             }
+            if ($user->id_rol == 2) {
+                $user_matricula = $user;
+            }
+            if ($user->id_rol == 3) {
+                $user_matricula = $user;
+            }
         }
+        $evolucion = $evolucion_find->id;
         $sucursales = sucursal::all();
         $especialidades = especialidad::all();
         $recetas_count = receta::all()->count();
 
-        return view("adminlte.medico.add_receta", compact('sucursales', 'especialidades', 'recetas_count', 'user_matricula', 'evolucion_find'));
+        return view("adminlte.medico.add_receta", compact('sucursales', 'especialidades', 'recetas_count', 'user_matricula', 'evolucion_find', 'evolucion'));
     }
 
     public function crear_receta(Request $request)
@@ -163,7 +181,7 @@ class MedicoController extends Controller
             'codigoReceta' => $request->inputCodeReceta,
             'id_responsable' => auth()->user()->id,
             'id_paciente' => $evolucion->user_id,
-            'id_evolucion' => $evolucion->id,
+            'id_evolucion' => $request->evolucion_id,
             'medicamento' => $request->textMedicamento,
             'cantidad' => $request->inputCant,
             'aplicacionMedicamento' => $request->textAplicacion,
@@ -190,7 +208,7 @@ class MedicoController extends Controller
             {
                 $user_medico = $user;
             }
-            
+
         }
         return view("adminlte.medico.receta", compact('receta', 'code', 'name_sucursal', 'user_matricula', 'user_medico'));
     }
@@ -234,14 +252,16 @@ class MedicoController extends Controller
             {
                 $users_evolucion_paciente = $user->matricula;
             }
-            else if ($user->id_rol == 2)
+            if ($user->id_rol == 2)
             {
+                $users_evolucion_paciente = $user->matricula;
                 $users_evolucion_medico = $user->nombre . " " . $user->ap_paterno . " " . $user->ap_materno;
             }
-            else if ($user->id_rol == 3)
+            if ($user->id_rol == 3)
             {
+                $users_evolucion_paciente = $user->matricula;
                 $users_evolucion_medico = $user->nombre . " " . $user->ap_paterno . " " . $user->ap_materno;
-            }   
+            }
         }
 //        dd($users_evolucion_paciente." ".$users_evolucion_medico);
 //        dd($evolucion->sucursales()->first()->id);

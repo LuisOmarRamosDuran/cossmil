@@ -39,7 +39,7 @@
                     @endforeach
                 <td>
                     @foreach($data->users as $user)
-                        {{ $user->nombre." ". $user->ap_paterno." ". $user->ap_materno}} - 
+                        {{ $user->nombre." ". $user->ap_paterno." ". $user->ap_materno}} -
                     @endforeach
                 </td>
                     <td>{{ $data->diagnostico }}</td>
@@ -62,7 +62,10 @@
             </tr>
         </tfoot>
     </table>
-
+{{--    <div class="d-flex justify-content-center">--}}
+{{--        <button class="btn btn-danger text-white"><a href="{{ route("index_receta", ["id_user" => $user_matricula->id]) }}" target="_blank" class="text-white">Recetas</a></button>--}}
+{{--        <button class="btn btn-danger text-white"><a href="#" target="_blank" class="text-white">Laboratorios</a></button>--}}
+{{--    </div>--}}
 
 
 @stop

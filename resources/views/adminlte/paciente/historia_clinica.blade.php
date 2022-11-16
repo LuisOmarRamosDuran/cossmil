@@ -49,9 +49,9 @@
                      <br>
                      <span class="text-uppercase">Fecha y hora:</span>
                 </div>
-                <div class="col-md-5">  
+                <div class="col-md-5">
                     <span class="text-uppercase">{{ $name_sucursal }}</span>
-                    
+
                     <br>
                     @foreach($evolucion->users()->get() as $user)
                         @if($user->id_rol == 1)
@@ -60,11 +60,11 @@
                             <span class="text-uppercase">{{ $user->matricula }}</span>
                             <br>
                         @endif
-                    @endforeach                
+                    @endforeach
                     <span class="text-uppercase">{{ \Carbon\Carbon::parse($evolucion->created_at)->format('d/m/Y h:m') }}</span>
                 </div>
             </div>
-        
+
             <div class="row mt-4 mb-4">
                 <div class="col-md-12 text-uppercase font-weight-bold d-flex justify-content-center">
                     paciente
